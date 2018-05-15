@@ -1,7 +1,5 @@
 PODS:
-  - PineTar (0.1.0):
-    - SnapKit (~> 4.0.0)
-  - SnapKit (4.0.0)
+  - PineTar (0.1.1)
 
 DEPENDENCIES:
   - PineTar (from `../`)
@@ -11,9 +9,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PineTar: 068bf9f698babea7a758bcc6459c895e1f605d86
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  PineTar: 45b37350d58a34549a5fba3d4abd1a3141dd4578
 
-PODFILE CHECKSUM: b56e400438816e260f6ac70c036e32253a889b54
+PODFILE CHECKSUM: 2673df74f2a235e790ac00967480f3dc7a44b7ea
 
 COCOAPODS: 1.4.0

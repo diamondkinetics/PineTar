@@ -1,11 +1,9 @@
 use_frameworks!
 
 target 'PineTar_Example' do
-  pod 'PineTar', :path => '../'
+    pod 'PineTar', :path => '../'
 
   target 'PineTar_Tests' do
     inherit! :search_paths
-
-    
   end
 end

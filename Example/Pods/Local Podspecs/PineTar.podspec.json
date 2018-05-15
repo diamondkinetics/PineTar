@@ -1,6 +1,6 @@
 {
   "name": "PineTar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "Helping developers get a grip on Material Design.",
   "description": "Long long long long long long long long long long long long description!!!!!!!!!!!!! :)",
   "homepage": "https://github.com/tdmartin4/PineTar",
@@ -13,17 +13,12 @@
   },
   "source": {
     "git": "https://github.com/tdmartin4/PineTar.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "platforms": {
     "ios": "10.0"
   },
   "source_files": "PineTar/Classes/**/*",
-  "dependencies": {
-    "SnapKit": [
-      "~> 4.0.0"
-    ]
-  },
   "swift_version": "4.1",
   "resources": [
     "PineTar/Assets/*"

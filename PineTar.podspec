@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
 
   s.source_files = 'PineTar/Classes/**/*'
-  s.dependency 'SnapKit', '~> 4.0.0'
+  #s.dependency 'SnapKit', '~> 4.0.0'
   s.swift_version = '4.1'
   
   s.resource = ['PineTar/Assets/*']

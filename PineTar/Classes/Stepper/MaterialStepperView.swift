@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
 class MaterialStepperView: UIView {
     var currentStep: Int = 0
@@ -25,9 +24,9 @@ class MaterialStepperView: UIView {
         let stackView = UIStackView()
         stackView.axis = .vertical
         addSubview(stackView)
-        stackView.snp.makeConstraints{make in
-            make.top.leading.trailing.equalToSuperview()
-        }
+//        stackView.snp.makeConstraints{make in
+//            make.top.leading.trailing.equalToSuperview()
+//        }
         
 //        for step in steps {
 ////            let step
@@ -67,11 +66,11 @@ private class MaterialStepView<T: Step>: UIView {
         progressView.addCornerRadius(radius: 13)
         
         addSubview(progressView)
-        progressView.snp.makeConstraints{make in
-            make.height.width.equalTo(26)
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
+//        progressView.snp.makeConstraints{make in
+//            make.height.width.equalTo(26)
+//            make.leading.equalToSuperview()
+//            make.centerY.equalToSuperview()
+//        }
         
         let label = UILabel()
         label.font = ThemeManager.font.withSize(20)
@@ -79,16 +78,16 @@ private class MaterialStepView<T: Step>: UIView {
         label.text = step.text.appending(appendStr)
         addSubview(label)
         
-        label.snp.makeConstraints{make in
-            make.leading.equalTo(progressView.snp.trailing).offset(15)
-            make.centerY.equalToSuperview()
-        }
+//        label.snp.makeConstraints{make in
+//            make.leading.equalTo(progressView.snp.trailing).offset(15)
+//            make.centerY.equalToSuperview()
+//        }
         
         guard let result = resultView else {return}
         addSubview(result)
-        result.snp.makeConstraints{make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalTo(label.snp.trailing).offset(5)
-        }
+//        result.snp.makeConstraints{make in
+//            make.trailing.top.bottom.equalToSuperview()
+//            make.leading.equalTo(label.snp.trailing).offset(5)
+//        }
     }
 }

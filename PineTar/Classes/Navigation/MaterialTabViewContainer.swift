@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
 public class MaterialTabViewController: UIViewController {
     func addViewController(vc: UIViewController) {

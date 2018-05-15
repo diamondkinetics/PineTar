@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
 public protocol TabDelegate {
     func tabPressed(atIndex index: Int)

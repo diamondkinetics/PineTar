@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
 enum ImageAlignment: Int {
     case topLeft

@@ -10,6 +10,7 @@
 #endif
 #endif
 
+#import "SnapKit.h"
 
 FOUNDATION_EXPORT double PineTarVersionNumber;
 FOUNDATION_EXPORT const unsigned char PineTarVersionString[];

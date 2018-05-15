@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import SnapKit
 
 public protocol CardAnimatorSource {
     var sendingCard: MaterialCardView? {get}
