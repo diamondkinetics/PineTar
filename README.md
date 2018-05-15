@@ -40,11 +40,11 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 Download the project and run the samples or use the following docs to get started
 
 We are still just starting! Use what we have and contribute what you need
-* [Themes](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Themes.md)
-* [Tabs](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Tabs.md)
-* [Cards](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Cards.md)
-* [Card Table Views](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/CardTableViews.md)
-* [Steppers](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Steppers.md)
+* [Themes](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Themes.md)
+* [Tabs](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Tabs.md)
+* [Cards](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Cards.md)
+* [Card Table Views](https://github.com/tdmartin4/PineTar/blob/master/Documentation/CardTableViews.md)
+* [Steppers](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Steppers.md)
 
 ## Contributing
 
