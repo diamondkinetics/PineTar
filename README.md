@@ -33,6 +33,13 @@ Then, run the following command:
 $ pod install
 ```
 
+#### While DKPrivate ...
+Add the following to the top of your Podfile
+```ruby
+source 'https://github.com/tdmartin4/dkpods.git'
+source 'https://github.com/CocoaPods/Specs.git'
+```
+
 ### Manually
 If you prefer not to use either of the aforementioned dependency managers, you can integrate PineTar into your project manually.
 
