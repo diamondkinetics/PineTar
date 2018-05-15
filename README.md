@@ -1,29 +1,66 @@
-# PineTar
+#  PineTar
 
-[![CI Status](https://img.shields.io/travis/tdmartin4/PineTar.svg?style=flat)](https://travis-ci.org/tdmartin4/PineTar)
-[![Version](https://img.shields.io/cocoapods/v/PineTar.svg?style=flat)](https://cocoapods.org/pods/PineTar)
-[![License](https://img.shields.io/cocoapods/l/PineTar.svg?style=flat)](https://cocoapods.org/pods/PineTar)
-[![Platform](https://img.shields.io/cocoapods/p/PineTar.svg?style=flat)](https://cocoapods.org/pods/PineTar)
+An iOS material design library (plus other useful UI/UX features) that utilizes the IBDesingable and IBInspectable tools to help visualize and easily manipulate your UI on iOS Storyboards.
 
-## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+## Installing
 
-## Requirements
+### CocoaPods
 
-## Installation
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
 
-PineTar is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'PineTar'
+```bash
+$ gem install cocoapods
 ```
 
-## Author
+> CocoaPods 1.1+ is required to build PineTar.
 
-tdmartin4, tomdmartin4@gmail.com
+To integrate PineTar into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+use_frameworks!
+
+target '<Your Target Name>' do
+pod 'PineTar', '~> 1.0'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
+### Manually
+If you prefer not to use either of the aforementioned dependency managers, you can integrate PineTar into your project manually.
+
+## Usage
+Download the project and run the samples or use the following docs to get started
+
+We are still just starting! Use what we have and contribute what you need
+* [Themes](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Themes.md)
+* [Tabs](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Tabs.md)
+* [Cards](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Cards.md)
+* [Card Table Views](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/CardTableViews.md)
+* [Steppers](https://github.com/tdmartin4/PineTar/blob/mater/Documentation/Steppers.md)
+
+## Contributing
+
+This is a young project with plenty of room for growth and improvement. Feel free to contribute with in any of the following ways
+* **Feature Requests** Open an issue
+* **Bugs:** Open an issue
+* **Code:** Submitting a pull request
+
+## Authors
+
+* **Thomas Martin** - [tdmartin4](https://github.com/tdmartin4)
 
 ## License
 
 PineTar is available under the MIT license. See the LICENSE file for more info.
+
+## Acknowledgments
+
+* Thanks to [SnapKit](https://github.com/SnapKit/SnapKit) for making my life easier
