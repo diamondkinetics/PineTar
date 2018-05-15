@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDt-8R-NQa">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="GDG-Sm-zvJ">
+            <objects>
+                <navigationController id="KDt-8R-NQa" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="hab-iP-3Av">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.33725490196078434" green="0.15686274509803921" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.46274509800000002" green="0.70588235290000001" blue="0.33725490200000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="QUS-KJ-g3c" kind="relationship" relationship="rootViewController" id="XPI-gD-bu6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X7C-r2-yk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-897" y="117"/>
+        </scene>
+        <!--Card Example View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="SimpleTileExample" id="BYZ-38-t0r" customClass="CardExampleViewController" customModule="PineTar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aF9-PF-zOn" customClass="MaterialCardTableView" customModule="PineTar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="312" id="7MR-0w-lGv">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="312"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7MR-0w-lGv" id="ojT-7L-hHL">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="312"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rKh-yR-wAM" customClass="MaterialCardView" customModule="PineTar">
+                                                    <rect key="frame" x="15" y="16" width="345" height="280"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="divideImage" value="image"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="divideHeight">
+                                                            <real key="value" value="200"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="header" value="First Tile"/>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="headerColor">
+                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="headerSize">
+                                                            <real key="value" value="28"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="headerAlignment">
+                                                            <integer key="value" value="4"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="headerVertOffset">
+                                                            <integer key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="headerHorzOffset">
+                                                            <integer key="value" value="20"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="contentDescription" value="Welcome to Material Design, we hope you enjoy your stay"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="subheaderSize">
+                                                            <real key="value" value="0.0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="contentDescriptionSize">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="contentDescriptionOffset">
+                                                            <integer key="value" value="0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="rKh-yR-wAM" secondAttribute="bottom" constant="5" id="3n2-MF-DlB"/>
+                                                <constraint firstItem="rKh-yR-wAM" firstAttribute="leading" secondItem="ojT-7L-hHL" secondAttribute="leadingMargin" id="jfZ-yC-lH4"/>
+                                                <constraint firstItem="rKh-yR-wAM" firstAttribute="top" secondItem="ojT-7L-hHL" secondAttribute="topMargin" constant="5" id="kDR-Qr-r21"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rKh-yR-wAM" secondAttribute="trailing" id="pgx-mG-uV5"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aF9-PF-zOn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="5oT-8k-yb2"/>
+                            <constraint firstItem="aF9-PF-zOn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Pfn-VG-3XM"/>
+                            <constraint firstItem="aF9-PF-zOn" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cdy-fw-1gC"/>
+                            <constraint firstItem="aF9-PF-zOn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gBj-S7-4uT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="eEB-wQ-df1"/>
+                    <connections>
+                        <outlet property="tableView" destination="aF9-PF-zOn" id="qRY-0N-3r7"/>
+                        <segue destination="RXj-OF-dC0" kind="presentation" identifier="PRESENT_DETAILS" id="P9b-MJ-Bno"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="117.39130434782609"/>
+        </scene>
+        <!--TabVC Example-->
+        <scene sceneID="FO4-5d-fni">
+            <objects>
+                <viewController id="QUS-KJ-g3c" customClass="TabVCExample" customModule="PineTar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="s9z-Fn-1lz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qeD-ae-3Bb" customClass="MaterialTabViewContainer" customModule="PineTar">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvB-fH-3O1" customClass="RoundMaterialButton" customModule="PineTar_Example" customModuleProvider="target">
+                                <rect key="frame" x="285" y="513" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Vsm-m7-4a2"/>
+                                    <constraint firstAttribute="height" constant="60" id="otU-SN-AIf"/>
+                                </constraints>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qeD-ae-3Bb" firstAttribute="trailing" secondItem="GAp-yx-Ssg" secondAttribute="trailing" id="061-Kv-Fwt"/>
+                            <constraint firstItem="GAp-yx-Ssg" firstAttribute="bottom" secondItem="SvB-fH-3O1" secondAttribute="bottom" constant="30" id="2A8-Yz-23J"/>
+                            <constraint firstItem="qeD-ae-3Bb" firstAttribute="bottom" secondItem="GAp-yx-Ssg" secondAttribute="bottom" id="AHa-qm-J41"/>
+                            <constraint firstItem="qeD-ae-3Bb" firstAttribute="leading" secondItem="GAp-yx-Ssg" secondAttribute="leading" id="F0e-aU-xZA"/>
+                            <constraint firstItem="qeD-ae-3Bb" firstAttribute="top" secondItem="GAp-yx-Ssg" secondAttribute="top" id="GsZ-Ud-Yla"/>
+                            <constraint firstItem="GAp-yx-Ssg" firstAttribute="trailing" secondItem="SvB-fH-3O1" secondAttribute="trailing" constant="30" id="dmg-4z-Phg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GAp-yx-Ssg"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="YOg-Jn-d8E"/>
+                    <connections>
+                        <outlet property="tabContainer" destination="qeD-ae-3Bb" id="zha-Ba-f3r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YRR-kk-niL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-898.39999999999998" y="888.30584707646187"/>
+        </scene>
+        <!--DetailsVC-->
+        <scene sceneID="McN-Q4-SzB">
+            <objects>
+                <viewController storyboardIdentifier="EmptyForNow" id="RXj-OF-dC0" customClass="DetailsVC" customModule="PineTar" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xef-Dw-rcT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Y2L-mO-9yi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUB-0L-SYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="904"/>
+        </scene>
+        <!--DetailsVC-->
+        <scene sceneID="D4a-Ro-gdU">
+            <objects>
+                <viewController id="IA9-nT-Lqd" customClass="DetailsVC" customModule="PineTar" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pOG-6W-4NS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="BH4-On-kfP"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bek-er-jgt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014" y="904"/>
+        </scene>
+        <!--Testing-->
+        <scene sceneID="1Ik-w0-hLa">
+            <objects>
+                <viewController storyboardIdentifier="SocialTileExample" title="Testing" id="dkO-WC-jGZ" customClass="SocialExampleViewController" customModule="PineTar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OYm-ni-7he">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="crt-6q-nxf" customClass="MaterialCardTableView" customModule="PineTar">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="288" id="UZY-8I-t7B">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="288"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UZY-8I-t7B" id="cWS-Qd-1fB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="287.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Rf-Mm-iYq" customClass="MaterialSocialCardView" customModule="PineTar">
+                                                    <rect key="frame" x="20" y="11" width="335" height="266"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="5Rf-Mm-iYq" firstAttribute="leading" secondItem="cWS-Qd-1fB" secondAttribute="leadingMargin" constant="5" id="EB5-1b-cTc"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5Rf-Mm-iYq" secondAttribute="trailing" constant="5" id="X8u-lJ-Gpv"/>
+                                                <constraint firstItem="5Rf-Mm-iYq" firstAttribute="top" secondItem="cWS-Qd-1fB" secondAttribute="topMargin" id="Z9n-lk-Lgm"/>
+                                                <constraint firstItem="5Rf-Mm-iYq" firstAttribute="bottom" secondItem="cWS-Qd-1fB" secondAttribute="bottomMargin" id="e8K-MH-nFK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="crt-6q-nxf" firstAttribute="top" secondItem="eRJ-HA-2O2" secondAttribute="top" id="NDc-M8-OH2"/>
+                            <constraint firstItem="crt-6q-nxf" firstAttribute="leading" secondItem="eRJ-HA-2O2" secondAttribute="leading" id="U7m-e6-EXZ"/>
+                            <constraint firstItem="crt-6q-nxf" firstAttribute="trailing" secondItem="eRJ-HA-2O2" secondAttribute="trailing" id="hoE-zg-P17"/>
+                            <constraint firstItem="crt-6q-nxf" firstAttribute="bottom" secondItem="eRJ-HA-2O2" secondAttribute="bottom" id="qmX-2t-0D9"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eRJ-HA-2O2"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="crt-6q-nxf" id="tpr-NK-NcJ"/>
+                        <segue destination="IA9-nT-Lqd" kind="presentation" identifier="PRESENT_DETAILS" id="Tvv-3c-pYy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Nzu-B5-2Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013.6" y="115.59220389805098"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="image" width="1600" height="900"/>
+    </resources>
+</document>

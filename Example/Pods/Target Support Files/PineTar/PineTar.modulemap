@@ -1,0 +1,6 @@
+framework module PineTar {
+  umbrella header "PineTar-umbrella.h"
+
+  export *
+  module * { export * }
+}
