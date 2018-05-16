@@ -65,6 +65,7 @@ public class DetailsVC: UIViewController {
         
         // TODO: Card should not be pressable
         let card = MaterialCardView(frame: CGRect.zero)
+        card.pressAnimationEnabled = false
         card.update(forConfig: cardConfig)
         card.layer.shadowColor = UIColor.clear.cgColor
         scrollContentView.addSubview(card)

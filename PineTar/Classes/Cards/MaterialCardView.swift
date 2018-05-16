@@ -72,6 +72,7 @@ public class MaterialCardView: UIView {
     private var imageView: UIImageView?
     
     public var cardPressedAction: ((MaterialCardView) -> Void)?
+    public var pressAnimationEnabled: Bool = true
 
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -358,22 +359,29 @@ public class MaterialCardView: UIView {
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.5, animations: {
-            self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-        })
+        if pressAnimationEnabled {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+            })
+        }
     }
     
     override public func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         cardPressedAction?(self)
-        UIView.animate(withDuration: 0.25, animations: {
-            self.transform = CGAffineTransform.identity
-        })
+        
+        if pressAnimationEnabled {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.transform = CGAffineTransform.identity
+            })
+        }
     }
     
     override public func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.transform = CGAffineTransform.identity
-        })
+        if pressAnimationEnabled {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.transform = CGAffineTransform.identity
+            })
+        }
     }
     
     private func setDefaults() {
