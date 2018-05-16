@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'PineTar_Example' do
     pod 'PineTar', :path => '../'
+    pod "youtube-ios-player-helper", "~> 0.1.4"
 
   target 'PineTar_Tests' do
     inherit! :search_paths

@@ -10,8 +10,30 @@ import Foundation
 import UIKit
 
 public class DetailsVC: UIViewController {
-    private var sendingCard: MaterialCardView!
-    public var cardConfig: MaterialCardConfig!
+    private var sendingCard: MaterialCardView
+    public var cardConfig: MaterialCardConfig
+    private var contentView: UIView
+    private var source: CardAnimatorSourceVC!
+    public var statusBarHidden = false {
+        didSet {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.setNeedsStatusBarAppearanceUpdate()
+            }, completion: {complete in
+                self.source.statusBarHidden = true
+            })
+        }
+    }
+    
+    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView) {
+        self.sendingCard = sendingCard
+        self.cardConfig = cardConfig
+        self.contentView = contentView
+        super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override public func viewDidLoad() {
         transitioningDelegate = self
@@ -19,17 +41,45 @@ public class DetailsVC: UIViewController {
     }
     
     private func setup() {
-        guard cardConfig != nil else {
-            fatalError("DetailVC must be given a cardConfig")
+        view.backgroundColor = ThemeManager.backgroundColor
+        
+        let scrollView = UIScrollView()
+        scrollView.backgroundColor = ThemeManager.backgroundColor
+        self.view.addSubview(scrollView)
+        scrollView.snp.makeConstraints{make in
+            make.bottom.top.leading.trailing.equalToSuperview()
         }
         
-        view.backgroundColor = ThemeManager.backgroundColor
+        let scrollContentView = UIView()
+        let height = contentView.frame.height
+        
+        scrollContentView.backgroundColor = sendingCard.backgroundColor
+        scrollView.addSubview(scrollContentView)
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollContentView.snp.makeConstraints{make in
+            make.leading.trailing.bottom.top.equalToSuperview()
+            make.width.equalTo(self.view.snp.width)
+            make.height.equalTo(sendingCard.frame.height + height) // TODO: This will have to be calculated
+        }
+        
+        // TODO: Card should not be pressable
         let card = MaterialCardView(frame: CGRect.zero)
         card.update(forConfig: cardConfig)
-        self.view.addSubview(card)
+        card.layer.shadowColor = UIColor.clear.cgColor
+        scrollContentView.addSubview(card)
         
         card.snp.makeConstraints{make in
-            make.top.leading.bottom.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(self.sendingCard.frame.height)
+        }
+        
+        scrollContentView.addSubview(contentView)
+        contentView.snp.makeConstraints{make in
+            make.top.equalTo(card.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(height)
+            make.width.equalToSuperview()
         }
         
         let backButton = UIButton()
@@ -42,7 +92,7 @@ public class DetailsVC: UIViewController {
         self.view.addSubview(backButton)
         backButton.snp.makeConstraints{make in
             make.width.height.equalTo(40)
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-10)
         }
     }
@@ -53,12 +103,29 @@ public class DetailsVC: UIViewController {
             sender.alpha = 0
         })
     }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return .slide
+    }
+    
+    public override var prefersStatusBarHidden: Bool {
+        return statusBarHidden
+    }
 }
 
 extension DetailsVC: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if let source = source as? CardAnimatorSource, let card = source.sendingCard {
+        if let source = source as? CardAnimatorSourceVC, let card = source.sendingCard {
+            self.source = source
+            self.sendingCard = card
+            return CardAnimatorFrom(from: card)
+        } else if let source = source as? StatusBarHandler, let card = source.sendingCard {
+            self.source = source.animatorSource
             self.sendingCard = card
             return CardAnimatorFrom(from: card)
         }
@@ -67,6 +134,6 @@ extension DetailsVC: UIViewControllerTransitioningDelegate {
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CardAnimatorTo(with: sendingCard)
+        return CardAnimatorTo(with: sendingCard, source: source)
     }
 }

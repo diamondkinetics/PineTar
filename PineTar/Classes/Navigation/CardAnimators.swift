@@ -9,10 +9,6 @@
 import Foundation
 import UIKit
 
-public protocol CardAnimatorSource {
-    var sendingCard: MaterialCardView? {get}
-}
-
 class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
     // TODO : Create a bounce effect
     fileprivate var velocity = 0.5
@@ -29,6 +25,11 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
         let from = transitionContext.viewController(forKey: .from)!
         container.addSubview(to.view)
         container.addSubview(from.view)
+        
+        
+        if let to = to as? DetailsVC {
+            to.statusBarHidden = true
+        }
         
         // Animation Context Setup
         let cardLoc = CGPoint(x: card.bounds.minX, y: card.bounds.minY)
@@ -80,9 +81,11 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
 class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
     fileprivate var velocity = 0.5
     var card: MaterialCardView
+    var source: CardAnimatorSourceVC
     
-    init(with card: MaterialCardView) {
+    init(with card: MaterialCardView, source: CardAnimatorSourceVC) {
         self.card = card
+        self.source = source
         super.init()
     }
     
@@ -90,15 +93,29 @@ class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
         let container = transitionContext.containerView
         let to = transitionContext.viewController(forKey: .to)!
         let from = transitionContext.viewController(forKey: .from)!
+        
         container.addSubview(to.view)
         container.addSubview(from.view)
         
-        let movingCard = from.view.subviews.filter{$0 is MaterialCardView}[0] as! MaterialCardView
+        source.statusBarHidden = false
+        let scrollView = (from.view.subviews.filter{$0 is UIScrollView}[0] as! UIScrollView)
+        let movingCard = scrollView.subviews[0]
+        movingCard.layer.masksToBounds = true
+        
         movingCard.removeFromSuperview()
         from.view.backgroundColor = UIColor.clear
-        movingCard.setCornerRadius(radius: card.cornerRadius)
+        scrollView.alpha = 0.0
+        
+        //movingCard.setCornerRadius(radius: card.cornerRadius) // TODO: Readd
         movingCard.frame.origin = CGPoint.init(x: 0, y: 0)
         from.view.addSubview(movingCard)
+        
+        movingCard.snp.removeConstraints()
+        movingCard.snp.makeConstraints{make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        container.layoutIfNeeded()
         
         movingCard.snp.removeConstraints()
         movingCard.snp.makeConstraints{make in

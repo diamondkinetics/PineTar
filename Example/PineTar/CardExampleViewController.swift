@@ -9,9 +9,10 @@
 import UIKit
 import PineTar
 
-class CardExampleViewController: UIViewController, CardAnimatorSource {    
+class CardExampleViewController: UIViewController, StatusBarHandler {
     @IBOutlet weak var tableView: MaterialCardTableView!
     var sendingCard: MaterialCardView?
+    var animatorSource: CardAnimatorSourceVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +41,12 @@ class CardExampleViewController: UIViewController, CardAnimatorSource {
     func setUp() {
         tableView.cardPressedAction = {card in
             self.sendingCard = card
-            self.performSegue(withIdentifier: "PRESENT_DETAILS", sender: card)
+            
+            // TODO: Wrap this inside of the pod
+            let config = MaterialCardConfig(card: card)
+            let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view)
+            self.present(vc, animated: true, completion: nil)
         }
     }
 
@@ -48,35 +54,4 @@ class CardExampleViewController: UIViewController, CardAnimatorSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PRESENT_DETAILS" {
-            let vc = segue.destination as! DetailsVC
-            let config = MaterialCardConfig(card: sender as! MaterialCardView)
-            vc.cardConfig = config
-        }
-    }
 }
-
-// TODO: Yea http://tobiashelmri.ch/swift,/ios/2016/12/08/hiding-the-status-bar-smoothly-in-ios-10.html
-//class VC: UIViewController {
-//    //  TODO: hide status bar on
-//    var statusBarShouldBeHidden = false
-//
-//    func doStuff(hide: Bool) {
-//        statusBarShouldBeHidden = hide
-//
-//        UIView.animate(withDuration: 0.25) {
-//          self.setNeedsStatusBarAppearanceUpdate()
-//        }
-//    }
-//
-//    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-//        return .slide
-//    }
-//
-//    override var prefersStatusBarHidden: Bool {
-//        return statusBarShouldBeHidden
-//    }
-//}
-

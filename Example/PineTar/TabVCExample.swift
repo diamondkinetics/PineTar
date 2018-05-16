@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PineTar
 
-public class TabVCExample: UIViewController, MaterialTabViewDelegate {
+public class TabVCExample: CardAnimatorSourceVC, MaterialTabViewDelegate {
     @IBOutlet weak var tabContainer: MaterialTabViewContainer!
     public var viewController: UIViewController {return self}
     
@@ -26,9 +26,13 @@ public class TabVCExample: UIViewController, MaterialTabViewDelegate {
         tabContainer.delegate = self
         
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.init(for: type(of: self)))
-        let vc = storyboard.instantiateViewController(withIdentifier: "SocialTileExample")
-        let vc2 = storyboard.instantiateViewController(withIdentifier: "SimpleTileExample")
-        let vc3 = storyboard.instantiateViewController(withIdentifier: "SocialTileExample")
+        let vc = storyboard.instantiateViewController(withIdentifier: "SocialTileExample") as! SocialExampleViewController
+        let vc2 = storyboard.instantiateViewController(withIdentifier: "SimpleTileExample") as! CardExampleViewController
+        let vc3 = storyboard.instantiateViewController(withIdentifier: "SocialTileExample") as! SocialExampleViewController
+        
+        vc.animatorSource = self
+        vc2.animatorSource = self
+        vc3.animatorSource = self
         tabContainer.addViewControllers(controllers: [vc2, vc, vc3], labels: ["Item One", "Item Two", "Item Three"])
     }
 }
