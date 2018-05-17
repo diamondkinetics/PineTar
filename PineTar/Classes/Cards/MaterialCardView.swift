@@ -17,6 +17,7 @@ enum ImageAlignment: Int {
     case overDivideLeft
     case overDivideMiddle
     case overDivideRight
+    case center
 }
 
 enum ImageStyle: Int {
@@ -105,7 +106,7 @@ public class MaterialCardView: UIView {
         }
     }
     
-    private func setup() {
+    func setup() {
         setDefaults()
         self.layer.cornerRadius = cornerRadius
         self.addShadow()
@@ -208,7 +209,7 @@ public class MaterialCardView: UIView {
     }
     
     // MARK: Component Creation
-    private func createDivide() {
+    func createDivide() {
         if divideHeight == 0 {return}
         
         var view: UIView
@@ -339,6 +340,8 @@ public class MaterialCardView: UIView {
         case .overDivideRight:
             make.bottom.equalTo(self.divide!.snp.bottom).offset(-vertOffset)
             make.trailing.equalToSuperview().offset(-horzOffset)
+        case .center:
+            make.centerX.centerY.equalToSuperview()
         }
     }
     

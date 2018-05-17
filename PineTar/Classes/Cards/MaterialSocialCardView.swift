@@ -9,32 +9,20 @@
 import Foundation
 import UIKit
 
-// TODO: Fix - No longer rendering in storyboard
 @IBDesignable
 public class MaterialSocialCardView: MaterialCardView {
-    override public func awakeFromNib() {
-        setup()
-        super.awakeFromNib()
-    }
-    
-    override public func prepareForInterfaceBuilder() {
-        setup()
-        super.prepareForInterfaceBuilder()
-    }
-    
-    private func setup() {
+    override func setup() {
         configureWithDefaults()
+        super.setup()
     }
     
     private func configureWithDefaults() {
         if image == nil {
-            image = UIImage(named: "justin", in: Bundle(for: type(of: self)), compatibleWith: nil)
+            image = UIImage(named: "stock", in: Bundle(for: type(of: self)), compatibleWith: nil)
         }
         
         if divideImage == nil {
-            // TODO: Put an image in here
-//            divideImage = UIImage(named: "phinatic", in: Bundle(for: type(of: self)), compatibleWith: nil)
-            divideImage = UIImage()
+            divideImage = UIImage(named: "stock", in: Bundle(for: type(of: self)), compatibleWith: nil)
         }
         
         imageStyle = imageStyle == -1 ? ImageStyle.circle.rawValue : imageStyle

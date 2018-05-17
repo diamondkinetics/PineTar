@@ -11,6 +11,7 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		654937E020AC65B3009E0AA8 /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654937DF20AC65B3009E0AA8 /* DetailContentView.swift */; };
+		654937E220AC7E2F009E0AA8 /* StepperExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */; };
 		6582F9EB20AB7A080094EA99 /* DetailContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6582F9EA20AB7A080094EA99 /* DetailContent.xib */; };
 		6590DF6D20AA39CC00CFF1C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6590DF6C20AA39CC00CFF1C3 /* Main.storyboard */; };
 		6590DF7120AA39D600CFF1C3 /* TabVCExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6590DF6E20AA39D600CFF1C3 /* TabVCExample.swift */; };
@@ -45,6 +46,7 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		654937DF20AC65B3009E0AA8 /* DetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentView.swift; sourceTree = "<group>"; };
+		654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperExampleVC.swift; sourceTree = "<group>"; };
 		6582F9EA20AB7A080094EA99 /* DetailContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContent.xib; sourceTree = "<group>"; };
 		6590DF6C20AA39CC00CFF1C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6590DF6E20AA39D600CFF1C3 /* TabVCExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabVCExample.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				6590DF6E20AA39D600CFF1C3 /* TabVCExample.swift */,
 				6590DF6F20AA39D600CFF1C3 /* CardExampleViewController.swift */,
 				6590DF7020AA39D600CFF1C3 /* SocialExampleViewController.swift */,
+				654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */,
 				654937DF20AC65B3009E0AA8 /* DetailContentView.swift */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				6582F9EA20AB7A080094EA99 /* DetailContent.xib */,
@@ -227,10 +230,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = CL34E8X5T2;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = CL34E8X5T2;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -388,6 +393,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				6590DF7120AA39D600CFF1C3 /* TabVCExample.swift in Sources */,
 				654937E020AC65B3009E0AA8 /* DetailContentView.swift in Sources */,
+				654937E220AC7E2F009E0AA8 /* StepperExampleVC.swift in Sources */,
 				6590DF7320AA39D600CFF1C3 /* SocialExampleViewController.swift in Sources */,
 				6590DF7220AA39D600CFF1C3 /* CardExampleViewController.swift in Sources */,
 			);
@@ -531,6 +537,7 @@
 			baseConfigurationReference = D4386AF35A3422E66E58577E /* Pods-PineTar_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CL34E8X5T2;
 				INFOPLIST_FILE = PineTar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -546,6 +553,7 @@
 			baseConfigurationReference = C335DB32C4DC8F17A3DA6F01 /* Pods-PineTar_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CL34E8X5T2;
 				INFOPLIST_FILE = PineTar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -560,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1488E624FF256A344D5B3261 /* Pods-PineTar_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CL34E8X5T2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -581,6 +590,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4FFA371501F6086CB0F1E3B2 /* Pods-PineTar_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CL34E8X5T2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

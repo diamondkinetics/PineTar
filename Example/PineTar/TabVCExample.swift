@@ -28,8 +28,8 @@ public class TabVCExample: CardAnimatorSourceVC, MaterialTabViewDelegate {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.init(for: type(of: self)))
         let vc = storyboard.instantiateViewController(withIdentifier: "SocialTileExample") as! SocialExampleViewController
         let vc2 = storyboard.instantiateViewController(withIdentifier: "SimpleTileExample") as! CardExampleViewController
-        let vc3 = storyboard.instantiateViewController(withIdentifier: "SocialTileExample") as! SocialExampleViewController
-        
+        let vc3 = storyboard.instantiateViewController(withIdentifier: "SimpleTileExample") as! CardExampleViewController
+
         vc.animatorSource = self
         vc2.animatorSource = self
         vc3.animatorSource = self

@@ -1,5 +1,5 @@
 PODS:
-  - PineTar (0.1.2)
+  - PineTar (0.1.3)
   - youtube-ios-player-helper (0.1.6)
 
 DEPENDENCIES:
@@ -11,7 +11,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PineTar: c4465bd78feef1316ff8e8373e2296a005a61839
+  PineTar: a3634de91de78ab68e7f850de86a1ed13cf3ae30
   youtube-ios-player-helper: 21ab92db027c7ff86cb17a3843a3f6eafc8158d2
 
 PODFILE CHECKSUM: 6fcd5a0b3ae3fa8d12354c305b50bab6940d79c1

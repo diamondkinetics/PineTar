@@ -132,12 +132,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvB-fH-3O1" customClass="RoundMaterialButton" customModule="PineTar_Example" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SvB-fH-3O1" customClass="RoundMaterialButton" customModule="PineTar">
                                 <rect key="frame" x="285" y="513" width="60" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Vsm-m7-4a2"/>
                                     <constraint firstAttribute="height" constant="60" id="otU-SN-AIf"/>
                                 </constraints>
+                                <connections>
+                                    <segue destination="56C-tf-7Ks" kind="show" id="Fze-Q8-YEH"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.87843137250000003" green="0.87843137250000003" blue="0.87843137250000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -212,6 +215,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nzu-B5-2Ea" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1013.6" y="115.59220389805098"/>
+        </scene>
+        <!--Stepper ExampleVC-->
+        <scene sceneID="keu-hw-0UE">
+            <objects>
+                <viewController storyboardIdentifier="StepperExampleVC" id="56C-tf-7Ks" customClass="StepperExampleVC" customModule="PineTar_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h0X-8R-68u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8EU-nP-Hq3"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-xR-bcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="887.40629685157433"/>
         </scene>
     </scenes>
     <resources>

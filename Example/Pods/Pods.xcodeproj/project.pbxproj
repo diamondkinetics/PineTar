@@ -33,6 +33,7 @@
 		603E1E742EFD412F4F58E7BC1CC2E04C /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D380805A5BE132AA5921002B125153A /* Debugging.swift */; };
 		619D9DDB50532B0DEA5977729CF4D1EE /* MaterialTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD1C2453297DA5BF2FE7D23F686445A /* MaterialTabView.swift */; };
 		634AA749FF6C86F9D9B9C304AAFCF650 /* MaterialStepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B807C950F8FB7432E93241D9F828E628 /* MaterialStepperView.swift */; };
+		65E5183120AE0A23009B6EFA /* MaterialImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65E5183020AE0A23009B6EFA /* MaterialImageCardView.swift */; };
 		779E325ED07952E7180E52ABCE0C9DFC /* YTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29DEDEC20D350B168BF7B7FFDF4EB1E3 /* YTPlayerView.m */; };
 		7BA4958BEBE7B12F74D6FE666DD8C041 /* YTPlayerView.h in Headers */ = {isa = PBXBuildFile; fileRef = A972B15E9D285B9B1A36315DF29B4E77 /* YTPlayerView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		83D68703C209152825402CB47877E5CD /* Pods-PineTar_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 738A417906E8C86F25BC88CB1A5A2432 /* Pods-PineTar_Example-dummy.m */; };
@@ -118,7 +119,7 @@
 		24437FFE512482C2307F0809EB98786D /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintDescription.swift; sourceTree = "<group>"; };
 		2451DC726EA76C5E838E84F4C19B063E /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintInsets.swift; sourceTree = "<group>"; };
 		24C78F9C3D0D3BF6F6D90CB0848C4183 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
-		2512D321A1071E52334178DC69DC4606 /* Pods_PineTar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PineTar_Example.framework; path = "Pods-PineTar_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2512D321A1071E52334178DC69DC4606 /* Pods_PineTar_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PineTar_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		297187128C2856C6F045075DF008D259 /* MaterialCardTableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaterialCardTableView.swift; sourceTree = "<group>"; };
 		2990E0E33A1AB1ABEAB4AE74D9C61992 /* RoundMaterialButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RoundMaterialButton.swift; sourceTree = "<group>"; };
 		29DEDEC20D350B168BF7B7FFDF4EB1E3 /* YTPlayerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = YTPlayerView.m; path = Classes/YTPlayerView.m; sourceTree = "<group>"; };
@@ -131,7 +132,7 @@
 		435556DA25C106C504BE20272015DA01 /* Pods-PineTar_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PineTar_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		4904D927190B164FE74B32B9F8D8CF61 /* ImageConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImageConfig.swift; sourceTree = "<group>"; };
 		4EE8B446441816E8DBFC345288524820 /* DetailsVC.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailsVC.swift; sourceTree = "<group>"; };
-		53315D3B7DA86842836347342064495D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		53315D3B7DA86842836347342064495D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		598F368219350D23ED12C61DF62CFF02 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintViewDSL.swift; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5CC09F8B2809302C8C61216084235D0E /* Pods-PineTar_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PineTar_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,8 +141,9 @@
 		6020455A05DC64E5FF83094C0795952E /* MaterialTabViewContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaterialTabViewContainer.swift; sourceTree = "<group>"; };
 		60D7174E26188B96CBBC45C4AE544548 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		6490A6BF90F1A47CBD19C4E8E46E3126 /* Pods-PineTar_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PineTar_Tests-umbrella.h"; sourceTree = "<group>"; };
+		65E5183020AE0A23009B6EFA /* MaterialImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialImageCardView.swift; sourceTree = "<group>"; };
 		6A082C86582601390DB79A1963C9BB8A /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintPriority.swift; sourceTree = "<group>"; };
-		6C173331E02D5050F8BB9558871C0F0F /* PineTar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = PineTar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		6C173331E02D5050F8BB9558871C0F0F /* PineTar.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = PineTar.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6DA232CCBD42064646B703E9E903A3B8 /* Pods-PineTar_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PineTar_Example-umbrella.h"; sourceTree = "<group>"; };
 		738A417906E8C86F25BC88CB1A5A2432 /* Pods-PineTar_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PineTar_Example-dummy.m"; sourceTree = "<group>"; };
 		7536F97BA8C024025937E757CBC145DF /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
@@ -158,21 +160,21 @@
 		87B4C5BA685072B22EE5C5ED647FCF41 /* Pods-PineTar_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PineTar_Example-frameworks.sh"; sourceTree = "<group>"; };
 		88AD30E3071F051F1ACCB19BCE4608B3 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintRelation.swift; sourceTree = "<group>"; };
 		8CA3CB31E36CA791A1B897B120642FA0 /* Step.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
-		8D784C74F2B310ABB5D3DEF518133A04 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		8D784C74F2B310ABB5D3DEF518133A04 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8FAC21BA6FF11F575976468422CBCC0C /* Pods-PineTar_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PineTar_Tests.modulemap"; sourceTree = "<group>"; };
 		90BDEB2643BB194EFBC43605C65326EC /* Pods-PineTar_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PineTar_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		919F550E811B8498C1515469766FF43F /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = youtube_ios_player_helper.framework; path = "youtube-ios-player-helper.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		919F550E811B8498C1515469766FF43F /* youtube_ios_player_helper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = youtube_ios_player_helper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		94C9F9C50F40C7AFEBAD6DC866FB869A /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintInsetTarget.swift; sourceTree = "<group>"; };
 		95B0B421E92F364DC6DE1EFA03D04B8B /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutConstraintItem.swift; sourceTree = "<group>"; };
 		965C5FF5B3975A62A7C4711EF5EB77A7 /* Pods-PineTar_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PineTar_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		984EA7E2401E34E9D1EE39742372C07C /* MaterialButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaterialButton.swift; sourceTree = "<group>"; };
 		9A33BC6A5C67DC4CB8B6C2887E9FE921 /* Pods-PineTar_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PineTar_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		9AEA09493E8A63D6D6FC508080AF5AA0 /* PineTar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PineTar.framework; path = PineTar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9AEA09493E8A63D6D6FC508080AF5AA0 /* PineTar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PineTar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E979763D21DC73D8F210F23BA490747 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		9F0E0575C5EDC968E7F88EB8CB954F9F /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		A06A9CA44F4A793B6B174837AF182216 /* MaterialNavController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MaterialNavController.swift; sourceTree = "<group>"; };
-		A35F8778BB7782FA65A2FACB8A044948 /* Pods_PineTar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PineTar_Tests.framework; path = "Pods-PineTar_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A35F8778BB7782FA65A2FACB8A044948 /* Pods_PineTar_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PineTar_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A85B62646BABEE35C9034B965F50598E /* ClassExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClassExtensions.swift; sourceTree = "<group>"; };
 		A972B15E9D285B9B1A36315DF29B4E77 /* YTPlayerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YTPlayerView.h; path = Classes/YTPlayerView.h; sourceTree = "<group>"; };
 		ABD9DD9AB33B00771C79E6C263C9E13D /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintMaker.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				4EE8B446441816E8DBFC345288524820 /* DetailsVC.swift */,
 				297187128C2856C6F045075DF008D259 /* MaterialCardTableView.swift */,
 				F35C408C245C13A59C1373945D8FE9C1 /* MaterialCardView.swift */,
+				65E5183020AE0A23009B6EFA /* MaterialImageCardView.swift */,
 				DC901471CDB3C6068618D0A31ED2DC1E /* MaterialSocialCardView.swift */,
 				BBFF147DBFE9227B281BBDDBD89F0888 /* Configs */,
 			);
@@ -385,7 +388,6 @@
 				5E68BFF7326A13AE8E8CDE300B4E13BE /* Resources */,
 				D56E7535FF841C78EE5200DCC7C53280 /* Support Files */,
 			);
-			name = "youtube-ios-player-helper";
 			path = "youtube-ios-player-helper";
 			sourceTree = "<group>";
 		};
@@ -421,7 +423,6 @@
 				4904D927190B164FE74B32B9F8D8CF61 /* ImageConfig.swift */,
 				20B68F927AD7C5FD305C0E4F712360C6 /* MaterialCardConfig.swift */,
 			);
-			name = Configs;
 			path = Configs;
 			sourceTree = "<group>";
 		};
@@ -750,6 +751,7 @@
 				52CE6570CC3410F02BD2DFECE8C9A4DD /* HeaderConfig.swift in Sources */,
 				C03A00EB19CC105BF97E6595B5D8D833 /* ImageConfig.swift in Sources */,
 				F522E7D905FD8A01ACB49EF14C3E4BD6 /* Info.plist in Sources */,
+				65E5183120AE0A23009B6EFA /* MaterialImageCardView.swift in Sources */,
 				4E4CEE5584F6E5BDF4E270517A7EA996 /* LayoutConstraint.swift in Sources */,
 				EEA743BC697D14C5C81659157CF7A281 /* LayoutConstraintItem.swift in Sources */,
 				8F3885ABD06DE73C5ECF019617B3E7CA /* MaskedUIImageView.swift in Sources */,

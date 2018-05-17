@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// TODO: MAke all classes open for Theme overrides
 public protocol Theme {
     var primaryColor: UIColor {get}
     var highlightColor: UIColor {get}
@@ -32,7 +33,7 @@ struct DefaultTheme: SimpleTheme {
     let backgroundColor: UIColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0)
     let highlightColor: UIColor =  UIColor.white
     let font: UIFont = UIFont(name: "Futura", size: 20)!
-    var textColor: UIColor = UIColor.gray
+    var textColor: UIColor = UIColor.black
 }
 
 public class ThemeManager {
