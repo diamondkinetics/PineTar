@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PineTar'
-  s.version          = '0.1.3'
+  s.version          = '0.1.4'
   s.summary          = 'Helping developers get a grip on Material Design.'
 
 # This description is used to generate tags and improve search results.
@@ -19,11 +19,11 @@ Pod::Spec.new do |s|
 
   s.description      = 'Long long long long long long long long long long long long description!!!!!!!!!!!!! :) '
 
-  s.homepage         = 'https://github.com/tdmartin4/PineTar'
+  s.homepage         = 'https://github.com/diamondkinetics/PineTar'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'tdmartin4' => 'tomdmartin4@gmail.com' }
-  s.source           = { :git => 'https://github.com/tdmartin4/PineTar.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/diamondkinetics/PineTar.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '10.0'

@@ -36,7 +36,7 @@ $ pod install
 #### While DKPrivate ...
 Add the following to the top of your Podfile
 ```ruby
-source 'https://github.com/tdmartin4/dkpods.git'
+source 'https://github.com/diamondkinetics/dkpods.git'
 source 'https://github.com/CocoaPods/Specs.git'
 ```
 
@@ -47,11 +47,11 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 Download the project and run the samples or use the following docs to get started
 
 We are still just starting! Use what we have and contribute what you need
-* [Themes](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Themes.md)
-* [Tabs](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Tabs.md)
-* [Cards](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Cards.md)
-* [Card Table Views](https://github.com/tdmartin4/PineTar/blob/master/Documentation/CardTableViews.md)
-* [Steppers](https://github.com/tdmartin4/PineTar/blob/master/Documentation/Steppers.md)
+* [Themes](https://github.com/diamondkinetics/PineTar/blob/master/Documentation/Themes.md)
+* [Tabs](https://github.com/diamondkinetics/PineTar/blob/master/Documentation/Tabs.md)
+* [Cards](https://github.com/diamondkinetics/PineTar/blob/master/Documentation/Cards.md)
+* [Card Table Views](https://github.com/diamondkinetics/PineTar/blob/master/Documentation/CardTableViews.md)
+* [Steppers](https://github.com/diamondkinetics/PineTar/blob/master/Documentation/Steppers.md)
 
 ## Contributing
 
