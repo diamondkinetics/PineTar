@@ -12,6 +12,8 @@ import PineTar
 
 class StepperExampleVC: UIViewController {
     
+    @IBOutlet weak var stepperView: MaterialStepperView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -20,15 +22,11 @@ class StepperExampleVC: UIViewController {
     private func setup() {
         self.view.backgroundColor = ThemeManager.backgroundColor
         
-        let step1 = TextStep(skippable: false, text: "Name")
+//        let step1 = TextStep(skippable: false, text: "Name")
+        let step1 = ImageStep(skippable: false , text: "Profile Image")
         let step2 = ImageStep(skippable: false , text: "Profile Image")
         let step3 = TextStep(skippable: true, text: "Some More Text")
-        
-        let stepperView = MaterialStepperView(steps: [step1, step2, step3])
-        self.view.addSubview(stepperView)
-        stepperView.snp.makeConstraints{make in
-            make.trailing.bottom.equalToSuperview().offset(-30)
-            make.leading.top.equalToSuperview().offset(30)
-        }
+        stepperView.vc = self
+        stepperView.steps = [step1, step2, step3]
     }
 }

@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 // TODO: MAke all classes open for Theme overrides
+// TODO: Modify themes to reflect the actual color theme
+// primary, primary variant, primary variant 2, secondary, secondary variant, background, surface, error
+// on primary, on secondary, on background, on surface, on error
+// https://material.io/design/color/the-color-system.html#color-theme-creation
+
 public protocol Theme {
     var primaryColor: UIColor {get}
     var highlightColor: UIColor {get}

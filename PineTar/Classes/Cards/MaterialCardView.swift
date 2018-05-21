@@ -66,7 +66,7 @@ public class MaterialCardView: UIView {
     @IBInspectable var contentDescriptionSize: CGFloat = -1 //12
     @IBInspectable var contentDescriptionColor: UIColor? = nil //UIColor.black
     
-    private var divide: UIView?
+    var divide: UIView?
     private var headerLabel: UILabel?
     private var subheaderLabel: UILabel?
     private var descriptionTV: UITextView?

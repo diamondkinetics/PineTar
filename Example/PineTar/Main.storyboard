@@ -223,12 +223,54 @@
                     <view key="view" contentMode="scaleToFill" id="h0X-8R-68u">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C8g-Sb-vIe" customClass="MaterialStepperView" customModule="PineTar">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="8EU-nP-Hq3" firstAttribute="bottom" secondItem="C8g-Sb-vIe" secondAttribute="bottom" id="CN1-yb-bex"/>
+                            <constraint firstItem="C8g-Sb-vIe" firstAttribute="top" secondItem="8EU-nP-Hq3" secondAttribute="top" id="LcH-CQ-hNG"/>
+                            <constraint firstItem="8EU-nP-Hq3" firstAttribute="trailing" secondItem="C8g-Sb-vIe" secondAttribute="trailing" id="exX-VP-5Hr"/>
+                            <constraint firstItem="C8g-Sb-vIe" firstAttribute="leading" secondItem="8EU-nP-Hq3" secondAttribute="leading" id="tXL-yM-fUj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="8EU-nP-Hq3"/>
                     </view>
+                    <connections>
+                        <outlet property="stepperView" destination="C8g-Sb-vIe" id="dIA-X6-6Y3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebf-xR-bcY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="116" y="887.40629685157433"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="IZ6-77-VVn">
+            <objects>
+                <viewController id="U5O-Uc-qsD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fam-Fz-5bH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D3M-yV-UqU" customClass="MaterialSocialCardView" customModule="PineTar">
+                                <rect key="frame" x="28" y="53" width="318" height="282"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgL-hA-diy" customClass="MaterialButton" customModule="PineTar">
+                                <rect key="frame" x="96" y="472" width="182" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Yi0-Xg-O6Z"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wH0-gO-eJZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1039.2" y="884.70764617691157"/>
         </scene>
     </scenes>
     <resources>

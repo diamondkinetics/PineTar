@@ -16,7 +16,7 @@ enum State {
 }
 
 
-public class Step {
+public class Step: NSObject {
     var skippable: Bool
     var text: String
     public var value: Any?
@@ -31,113 +31,74 @@ public class Step {
         self.text = text
     }
     
-    func createResultView() -> UIView? {
-        guard value != nil else {return nil}
+    func createView(vc: UIViewController) -> UIView {
         return UIView()
     }
     
     func select() {}
+    func deselect() {}
 }
 
-public class ImageStep: Step {
-    override func createResultView() -> UIView? {
+public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    private var vc: UIViewController!
+    private var imageView: MaterialCardView!
+    
+    override func createView(vc: UIViewController) -> UIView {
         resultView?.removeFromSuperview()
-        guard let value = value as? UIImage else {return nil}
-        let view = UIImageView.init(image: value)
-        view.contentMode = .scaleAspectFit
+        self.vc = vc
+        let view = UIView()
+        
+        let imageView = MaterialImageCardView(frame: CGRect.zero)
+        imageView.backgroundColor = UIColor.gray
+        let image = UIImage(named: "outline_photo_white_48pt", in: Bundle(for: type(of: self)), compatibleWith: nil)
+        imageView.update(forConfig: MaterialCardConfig(cornerRadius: 10, dividerConfig: DividerConfig(divideImage: image), headerConfig: HeaderConfig(header: "")))
+        self.imageView = imageView
+        imageView.cardPressedAction = {card in
+            self.imageTapped()
+        }
+
+        
+        view.addSubview(imageView)
+        imageView.snp.makeConstraints{make in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.width.equalTo(imageView.snp.height)
+            make.centerX.equalToSuperview()
+        }
+        
         self.resultView = view
         return view
+    }
+    
+    @objc func imageTapped() {
+        let imagePicker = UIImagePickerController()
+        guard UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) else {return}
+        imagePicker.delegate = self
+        imagePicker.sourceType = .savedPhotosAlbum
+        imagePicker.allowsEditing = false
+        
+        vc.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        vc.dismiss(animated: true, completion: nil)
+        imageView.update(forConfig: MaterialCardConfig(dividerConfig: DividerConfig(divideImage: image)))
     }
 }
 
 public class TextStep: Step {
-    override func createResultView() -> UIView? {
+    override func createView(vc: UIViewController) -> UIView {
         resultView?.removeFromSuperview()
         if value == nil {value = ""}
         
         let label = UITextField()
         label.text = value as? String
         label.textColor = ThemeManager.textColor
+        label.textAlignment = .center
         label.font = ThemeManager.font.withSize(18)
         self.resultView = label
         
         return label
     }
-    
-    override func select() {
-        guard let resultView = resultView as? UITextField else {
-            _ = createResultView()
-            (self.resultView as! UITextField).becomeFirstResponder()
-            return
-        }
-        
-        resultView.becomeFirstResponder()
-    }
 }
-
-// TODO: Split out steps
-//protocol Step {
-//    var skippable: Bool {get}
-//    var text: String {get}
-//    var value: ValueType? {get}
-//    associatedtype ValueType
-//
-//    func createResultView(value: ValueType) -> UIView
-//}
-//
-//struct ImageStep: Step {
-//    var skippable: Bool
-//    var text: String
-//    var value: UIImage?
-//
-//    func createResultView(value: ValueType) -> UIView {
-//        let imageView = UIImageView()
-//        imageView.image = value
-//
-//        return imageView
-//    }
-//
-//}
-//
-//struct DateStep: Step {
-//    var skippable: Bool
-//    var text: String
-//    var value: Date?
-//
-//    func createResultView(value: ValueType) -> UIView {
-//        let label = UILabel()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MMM dd, yyyy"
-//        label.text = dateFormatter.string(from: value)
-//        label.textColor = ThemeManager.textColor
-//        label.font = ThemeManager.font.withSize(20)
-//
-//        return label
-//    }
-//}
-//
-//struct TextStep: Step {
-//    var skippable: Bool
-//    var text: String
-//    var value: String?
-//
-//    func createResultView(value: ValueType) -> UIView {
-//        let label = UILabel()
-//        label.text = value
-//        label.textColor = ThemeManager.textColor
-//        label.font = ThemeManager.font.withSize(20)
-//
-//        return label
-//    }
-//}
-//
-//struct CustomStep: Step {
-//    var skippable: Bool
-//    var text: String
-//    var value: Any?
-//    var viewForValue: ((Any) -> UIView)
-//
-//    func createResultView(value: ValueType) -> UIView {
-//        return viewForValue(value)
-//    }
-//}

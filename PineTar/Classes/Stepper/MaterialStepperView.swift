@@ -9,191 +9,177 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 public class MaterialStepperView: UIView {
     public var incompleteColor: UIColor = UIColor.gray
-    private var steps: [Step]
-    private var stepperViews: [MaterialStepView] = []
+    private var scrollView: UIScrollView!
+    private var contentView: UIView!
+    private var progressColorView: UIView!
+    public var vc: UIViewController!
     
-    public init(steps: [Step]) {
-        self.steps = steps
-        super.init(frame: CGRect.zero)
+    public var steps: [Step]! {
+        didSet {
+            setup()
+        }
+    }
+    
+    public override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        steps = [Step(skippable: false, text: "Example Step")]
         setup()
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     private func setup() {
+        let progressView = UIView()
+        progressView.backgroundColor = UIColor.white
+        progressView.addShadow()
+        
+        scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        
+        scrollView.isScrollEnabled = false
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.delegate = self
+        
+        self.addSubview(scrollView)
+        scrollView.snp.makeConstraints{make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(50)
+        }
+        
+        contentView = UIView()
+        contentView.backgroundColor = ThemeManager.backgroundColor
+        scrollView.addSubview(contentView)
+        
+        contentView.snp.makeConstraints{make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+            make.height.equalTo(self.snp.height).offset(-50)
+            make.width.equalTo(self.snp.width).multipliedBy(steps.count)
+        }
+        
+        self.addSubview(progressView)
+        progressView.snp.makeConstraints{make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(50)
+        }
+        
+        let progressBar = UIView()
+        progressView.addSubview(progressBar)
+        progressBar.addCornerRadius(radius: 8)
+        progressBar.backgroundColor = ThemeManager.backgroundColor
+        progressBar.snp.makeConstraints{make in
+            make.height.equalTo(16)
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
+        }
+        
+        progressColorView = UIView()
+        progressColorView.backgroundColor = ThemeManager.primaryColor
+        progressBar.addSubview(progressColorView)
+        progressColorView.snp.makeConstraints{make in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalTo(0)
+        }
+        
+        let leading = 25
+        var previousCard: MaterialCardView?
+        
         for step in steps {
-            let view = MaterialStepView(step: step, index: stepperViews.count + 1, incompleteColor: incompleteColor)
-            addSubview(view)
-            view.snp.makeConstraints{make in
-                make.leading.trailing.equalToSuperview()
-                make.height.equalTo(50)
-                
-                if let last = stepperViews.last {
-                    make.top.equalTo(last.snp.bottom)
+            let card = MaterialCardView(frame: CGRect.zero)
+            card.layer.cornerRadius = 4
+            card.pressAnimationEnabled = false
+            card.backgroundColor = UIColor.white
+            contentView.addSubview(card)
+            
+            card.snp.makeConstraints{make in
+                make.top.equalToSuperview().offset(25)
+                make.width.equalTo(self.snp.width).offset(-2 * leading)
+                make.height.equalTo(card.snp.width).dividedBy(1.3)
+
+                if let previousCard = previousCard {
+                    make.leading.equalTo(previousCard.snp.trailing).offset(2 * leading)
                 } else {
-                    make.top.equalToSuperview()
+                    make.leading.equalToSuperview().offset(leading)
                 }
             }
             
-            stepperViews.append(view)
-        }
-        
-        for i in 1..<stepperViews.count {
-            let view = UIView()
+            let label = UILabel()
+            label.text = step.text
+            label.font = ThemeManager.font.withSize(18)
+            label.textColor = ThemeManager.textColor
+            card.addSubview(label)
             
-            let progressView1 = stepperViews[i - 1].progressViewContainer!
-            let progressView2 = stepperViews[i].progressViewContainer!
-            
-            let fillColor = ThemeManager.buttonsAreHighlightColor ? ThemeManager.highlightColor : ThemeManager.primaryColor
-            if stepperViews[i].step.state == .incomplete {
-                view.backgroundColor = incompleteColor
-            } else {
-                view.backgroundColor = fillColor
+            label.snp.makeConstraints{make in
+                make.leading.equalTo(30)
+                make.top.equalTo(10)
+                make.height.equalTo(40)
             }
             
-            self.addSubview(view)
+            let continueButton = MaterialButton(frame: CGRect.zero)
+            continueButton.setTitle("Continue", for: .normal)
+            card.addSubview(continueButton)
+            continueButton.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
+            continueButton.snp.makeConstraints{make in
+                make.width.equalTo(125)
+                make.height.equalTo(40)
+                make.bottom.trailing.equalTo(-10)
+            }
 
+            let view = step.createView(vc: self.vc)
+            card.addSubview(view)
             view.snp.makeConstraints{make in
-                make.centerX.equalTo(progressView1.snp.centerX)
-                make.top.equalTo(progressView1.snp.bottom).offset(4)
-                make.bottom.equalTo(progressView2.snp.top).offset(-4)
-                make.width.equalTo(2)
+                make.top.equalTo(label.snp.bottom).offset(15)
+                make.bottom.equalTo(continueButton.snp.top).offset(-15)
+                make.leading.equalToSuperview().offset(15)
+                make.trailing.equalToSuperview().offset(-15)
             }
+            
+            guard previousCard != nil else {
+                previousCard = card
+                continue
+            }
+            
+            // TODO: MAke a plain jane material button
+            let backButton = UIButton()
+            backButton.setTitleColor(UIColor(red: 228.0/255, green: 36.0/255, blue: 36.0/255, alpha: 1.0), for: .normal)
+            backButton.titleLabel?.font = ThemeManager.font.withSize(16)
+            backButton.setTitle("Back", for: .normal)
+            backButton.addTarget(self, action: #selector(moveBackward), for: .touchUpInside)
+            card.addSubview(backButton)
+            backButton.snp.makeConstraints{make in
+                make.width.equalTo(70)
+                make.height.equalTo(40)
+                make.trailing.equalTo(continueButton.snp.leading).offset(-5)
+                make.bottom.equalTo(-10)
+            }
+            
+            previousCard = card
         }
-        
-        moveForwardStep()
     }
     
-    private func indexOfCurrentStep() -> Int? {
-        for i in 0..<steps.count {
-            let step = steps[i]
-            if step.state == .current { return  i }
-        }
-        
-        return nil
+    @objc private func moveForward() {
+        let scrollToRect = CGRect.init(x: scrollView.contentOffset.x + self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(scrollToRect, animated: true)
     }
     
-    private func moveForwardStep() {
-        guard let currIndex = indexOfCurrentStep() else {
-            steps.first?.state = .current
-            stepperViews.first?.update()
-            return
-        }
-        
-        steps[currIndex].state = .complete
-        stepperViews[currIndex].update()
-        
-        if currIndex < steps.count - 1 {
-            steps[currIndex - 1].state = .current
-            stepperViews[currIndex - 1].update()
-        }
+    @objc private func moveBackward() {
+        let scrollToRect = CGRect.init(x: scrollView.contentOffset.x - self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)
+        scrollView.scrollRectToVisible(scrollToRect, animated: true)
     }
 }
 
-private class MaterialStepView: UIView {
-    var step: Step
-    private var index: Int
-    private var progressView: UIView!
-    private var label: UILabel!
-    var progressViewContainer: UIView!
-    var incompleteColor: UIColor
-    
-    init(step: Step, index: Int, incompleteColor: UIColor) {
-        self.step = step
-        self.index = index
-        self.incompleteColor = incompleteColor
-        super.init(frame: CGRect.zero)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setup() {
-        let resultView: UIView? = step.createResultView()
-        createProgressViewContainer()
-        updateProgressView()
+extension MaterialStepperView: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let percentage = scrollView.contentOffset.x / contentView.frame.width
+        progressColorView.snp.removeConstraints()
         
-        createLabel()
-        updateLabel()
-        
-        guard let result = resultView else {return}
-        addSubview(result)
-        result.snp.makeConstraints{make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalTo(label.snp.trailing).offset(5)
-        }
-    }
-    
-    private func createLabel() {
-        label = UILabel()
-        label.font = ThemeManager.font.withSize(20)
-        addSubview(label)
-        
-        label.snp.makeConstraints{make in
-            make.leading.equalTo(progressViewContainer.snp.trailing).offset(15)
-            make.centerY.equalToSuperview()
-        }
-    }
-    
-    private func updateLabel() {
-        var appendStr = ""
-        let resultView: UIView? = step.createResultView()
-        if resultView != nil {appendStr = ":"}
-        
-        label.textColor = step.state == .incomplete ? incompleteColor : ThemeManager.textColor
-        label.text = step.text.appending(appendStr)
-    }
-
-    private func createProgressViewContainer() {
-        progressViewContainer = UIView()
-        progressViewContainer.addCornerRadius(radius: 13)
-        addSubview(progressViewContainer)
-        progressViewContainer.snp.makeConstraints{make in
-            make.height.width.equalTo(26)
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-    }
-    
-    private func updateProgressView() {
-        if progressView != nil {progressView.removeFromSuperview()}
-        
-        if step.state == .complete {
-            let image = UIImage.init(named: "check", in: Bundle(for: type(of: self)), compatibleWith: nil)
-            let imageView = UIImageView()
-            imageView.contentMode = .scaleAspectFit
-            imageView.image = image
-            progressView = imageView
-
-            imageView.image = imageView.image!.withRenderingMode(.alwaysTemplate)
-            imageView.tintColor = ThemeManager.textHighlightColor
-        } else {
-            let numLabel = UILabel()
-            numLabel.textColor = ThemeManager.textHighlightColor
-            numLabel.font = ThemeManager.font.withSize(14)
-            numLabel.textAlignment = .center
-            numLabel.text = "\(index)"
-            progressView = numLabel
+        progressColorView.snp.makeConstraints{make in
+            make.leading.top.bottom.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(percentage)
         }
         
-        let fillColor = ThemeManager.buttonsAreHighlightColor ? ThemeManager.highlightColor : ThemeManager.primaryColor
-        progressViewContainer.backgroundColor = step.state == .incomplete ? incompleteColor : fillColor
-        
-        progressViewContainer.addSubview(progressView)
-        progressView.snp.makeConstraints {make in
-            make.top.leading.equalToSuperview().offset(3)
-            make.bottom.trailing.equalToSuperview().offset(-3)
-        }
-    }
-    
-    func update() {
-        updateProgressView()
-        updateLabel()
+        self.layoutIfNeeded()
     }
 }

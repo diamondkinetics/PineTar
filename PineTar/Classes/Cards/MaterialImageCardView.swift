@@ -38,6 +38,7 @@ class MaterialImageCardView: MaterialCardView {
         guard let image = divideImage else {return}
         
         let imageView = UIImageView()
+        imageView.tintColor = UIColor.white
         imageView.image = image
         imageView.addCornerRadius(radius: self.cornerRadius)
         self.addSubview(imageView)
@@ -46,6 +47,8 @@ class MaterialImageCardView: MaterialCardView {
             make.top.bottom.leading.trailing.equalToSuperview()
         }
         
+        self.divide = imageView
+
         guard let muteColor = muteColor else {return}
         
         let muteView = UIView()
