@@ -10,12 +10,15 @@ import Foundation
 import UIKit
 
 @IBDesignable
-public class MaterialStepperView: UIView {
+public class MaterialStepperView: UIView, EnableStepDelegate {
     public var incompleteColor: UIColor = UIColor.gray
     private var scrollView: UIScrollView!
     private var contentView: UIView!
     private var progressColorView: UIView!
+    private var currIndex: Int!
     public var vc: UIViewController!
+    public var completion: ((Array<Any>) -> (Void))?
+    private var buttons: [UIButton]!
     
     public var steps: [Step]! {
         didSet {
@@ -33,6 +36,8 @@ public class MaterialStepperView: UIView {
         let progressView = UIView()
         progressView.backgroundColor = UIColor.white
         progressView.addShadow()
+        
+        currIndex = 0
         
         scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -85,6 +90,7 @@ public class MaterialStepperView: UIView {
         
         let leading = 25
         var previousCard: MaterialCardView?
+        buttons = []
         
         for step in steps {
             let card = MaterialCardView(frame: CGRect.zero)
@@ -118,14 +124,18 @@ public class MaterialStepperView: UIView {
             }
             
             let continueButton = MaterialButton(frame: CGRect.zero)
-            continueButton.setTitle("Continue", for: .normal)
+            let buttonText = step == steps.last ? "Complete" : "Continue"
+            continueButton.setTitle(buttonText, for: .normal)
             card.addSubview(continueButton)
-            continueButton.addTarget(self, action: #selector(moveForward), for: .touchUpInside)
+            continueButton.addTarget(self, action: #selector(moveForward(button:)), for: .touchUpInside)
             continueButton.snp.makeConstraints{make in
                 make.width.equalTo(125)
                 make.height.equalTo(40)
                 make.bottom.trailing.equalTo(-10)
             }
+            
+            buttons.append(continueButton)
+            step.delegate = self
 
             let view = step.createView(vc: self.vc)
             card.addSubview(view)
@@ -135,6 +145,8 @@ public class MaterialStepperView: UIView {
                 make.leading.equalToSuperview().offset(15)
                 make.trailing.equalToSuperview().offset(-15)
             }
+            
+            steps.first?.select()
             
             guard previousCard != nil else {
                 previousCard = card
@@ -159,14 +171,42 @@ public class MaterialStepperView: UIView {
         }
     }
     
-    @objc private func moveForward() {
-        let scrollToRect = CGRect.init(x: scrollView.contentOffset.x + self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)
-        scrollView.scrollRectToVisible(scrollToRect, animated: true)
+    @objc private func moveForward(button: UIButton) {
+        if button.titleLabel?.text == "Complete" {
+            progressColorView.snp.removeConstraints()
+            
+            progressColorView.snp.makeConstraints{make in
+                make.leading.top.bottom.trailing.equalToSuperview()
+            }
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.layoutIfNeeded()
+            }, completion: {completed in
+                self.completion?([])
+            })
+        } else {
+            let scrollToRect = CGRect.init(x: scrollView.contentOffset.x + self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)
+            scrollView.scrollRectToVisible(scrollToRect, animated: true)
+        }
     }
     
     @objc private func moveBackward() {
         let scrollToRect = CGRect.init(x: scrollView.contentOffset.x - self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)
         scrollView.scrollRectToVisible(scrollToRect, animated: true)
+    }
+    
+    public func enableStep(step: Step) {
+        let stepIndex = steps.index(of: step)!
+        let button = buttons[stepIndex]
+        button.alpha = 1.0
+        button.isEnabled = true
+    }
+    
+    public func disableStep(step: Step) {
+        let stepIndex = steps.index(of: step)!
+        let button = buttons[stepIndex]
+        button.alpha = 0.5
+        button.isEnabled = false
     }
 }
 
@@ -181,5 +221,15 @@ extension MaterialStepperView: UIScrollViewDelegate {
         }
         
         self.layoutIfNeeded()
+    }
+    
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        let index = Int(scrollView.contentOffset.x / self.frame.width)
+        if index != currIndex {
+            steps[currIndex].deselect()
+            steps[index].select()
+        }
+        
+        currIndex = index
     }
 }

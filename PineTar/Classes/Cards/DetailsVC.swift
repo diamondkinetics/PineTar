@@ -43,6 +43,14 @@ public class DetailsVC: UIViewController {
     private func setup() {
         view.backgroundColor = ThemeManager.backgroundColor
         
+        if contentView is UITableView {
+            setupWithTableView()
+        } else {
+            setupClassic()
+        }
+    }
+    
+    private func setupClassic() {
         let scrollView = UIScrollView()
         scrollView.backgroundColor = ThemeManager.backgroundColor
         self.view.addSubview(scrollView)
@@ -63,7 +71,6 @@ public class DetailsVC: UIViewController {
             make.height.equalTo(sendingCard.frame.height + height) // TODO: This will have to be calculated
         }
         
-        // TODO: Card should not be pressable
         let card = MaterialCardView(frame: CGRect.zero)
         card.pressAnimationEnabled = false
         card.update(forConfig: cardConfig)
@@ -83,6 +90,27 @@ public class DetailsVC: UIViewController {
             make.width.equalToSuperview()
         }
         
+        createBackButton()
+    }
+    
+    private func setupWithTableView() {
+        let card = MaterialCardView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.sendingCard.frame.height))
+        card.pressAnimationEnabled = false
+        card.update(forConfig: cardConfig)
+        card.layer.shadowColor = UIColor.clear.cgColor
+        
+        let tableView = contentView as! UITableView
+        
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints{make in
+            make.leading.trailing.top.bottom.equalToSuperview()
+        }
+        
+        tableView.tableHeaderView = card
+        createBackButton()
+    }
+    
+    private func createBackButton() {
         let backButton = UIButton()
         backButton.backgroundColor = UIColor.darkGray.withAlphaComponent(0.65)
         backButton.layer.cornerRadius = 20

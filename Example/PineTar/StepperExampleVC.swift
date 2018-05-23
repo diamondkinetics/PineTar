@@ -22,11 +22,16 @@ class StepperExampleVC: UIViewController {
     private func setup() {
         self.view.backgroundColor = ThemeManager.backgroundColor
         
-//        let step1 = TextStep(skippable: false, text: "Name")
-        let step1 = ImageStep(skippable: false , text: "Profile Image")
+        let step1 = TextStep(skippable: false, text: "Full Name")
+//        let step1 = ImageStep(skippable: false , text: "Profile Image")
         let step2 = ImageStep(skippable: false , text: "Profile Image")
         let step3 = TextStep(skippable: true, text: "Some More Text")
+        let step4 = NumberStep(skippable: false, text: "A number is needed")
+        
         stepperView.vc = self
-        stepperView.steps = [step1, step2, step3]
+        stepperView.steps = [step1, step2, step3, step4]
+        stepperView.completion = {results in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

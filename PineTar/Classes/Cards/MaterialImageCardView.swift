@@ -40,6 +40,7 @@ class MaterialImageCardView: MaterialCardView {
         let imageView = UIImageView()
         imageView.tintColor = UIColor.white
         imageView.image = image
+        imageView.contentMode = .scaleAspectFill
         imageView.addCornerRadius(radius: self.cornerRadius)
         self.addSubview(imageView)
         

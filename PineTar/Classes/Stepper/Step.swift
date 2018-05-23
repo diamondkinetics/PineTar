@@ -15,28 +15,47 @@ enum State {
     case current
 }
 
+public protocol EnableStepDelegate {
+    func enableStep(step: Step)
+    func disableStep(step: Step)
+}
 
 public class Step: NSObject {
     var skippable: Bool
     var text: String
     public var value: Any?
     var resultView: UIView?
-    var state: State = .incomplete {
-        didSet {if self.state == .current { select() }}
-    }
+    var delegate: EnableStepDelegate? { didSet {correct()} }
+    var readyToContinue: Bool { didSet { correct() }}
+    var state: State = .incomplete { didSet {if self.state == .current { select() }} }
     
     // Need action
     public init(skippable: Bool, text: String) {
         self.skippable = skippable
         self.text = text
+        readyToContinue = skippable
+    }
+    
+    private func correct() {
+        guard !skippable else {return}
+        
+        if readyToContinue {
+            delegate?.enableStep(step: self)
+        } else {
+            delegate?.disableStep(step: self)
+        }
     }
     
     func createView(vc: UIViewController) -> UIView {
         return UIView()
     }
     
-    func select() {}
-    func deselect() {}
+    func select() {
+        resultView?.becomeFirstResponder()
+    }
+    func deselect() {
+        resultView?.resignFirstResponder()
+    }
 }
 
 public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -82,23 +101,54 @@ public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationContr
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        readyToContinue = true
         vc.dismiss(animated: true, completion: nil)
         imageView.update(forConfig: MaterialCardConfig(dividerConfig: DividerConfig(divideImage: image)))
     }
 }
 
-public class TextStep: Step {
+public class TextStep: Step, UITextFieldDelegate {
     override func createView(vc: UIViewController) -> UIView {
         resultView?.removeFromSuperview()
         if value == nil {value = ""}
         
         let label = UITextField()
+        label.delegate = self
         label.text = value as? String
         label.textColor = ThemeManager.textColor
         label.textAlignment = .center
-        label.font = ThemeManager.font.withSize(18)
+        label.font = ThemeManager.font.withSize(24)
+        label.autocorrectionType = .no
+        label.autocapitalizationType = .none
         self.resultView = label
         
         return label
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        readyToContinue = !(result.count == 0)
+        return true
+    }
+}
+
+public class NumberStep: Step, UITextFieldDelegate {
+    override func createView(vc: UIViewController) -> UIView {
+        resultView?.removeFromSuperview()
+        let textField = UITextField()
+        textField.delegate = self
+        textField.textColor = ThemeManager.textColor
+        textField.textAlignment = .center
+        textField.font = ThemeManager.font.withSize(24)
+        textField.keyboardType = .numberPad
+        self.resultView = textField
+        
+        return textField
+    }
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
+        readyToContinue = !(result.count == 0)
+        return true
     }
 }
