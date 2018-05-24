@@ -68,7 +68,7 @@ public class DetailsVC: UIViewController {
         scrollContentView.snp.makeConstraints{make in
             make.leading.trailing.bottom.top.equalToSuperview()
             make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(sendingCard.frame.height + height) // TODO: This will have to be calculated
+            make.height.equalTo(sendingCard.ogHeight ?? sendingCard.frame.height + height) // TODO: This will have to be calculated
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
@@ -79,7 +79,7 @@ public class DetailsVC: UIViewController {
         
         card.snp.makeConstraints{make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(self.sendingCard.frame.height)
+            make.height.equalTo(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
         }
         
         scrollContentView.addSubview(contentView)
@@ -93,20 +93,54 @@ public class DetailsVC: UIViewController {
         createBackButton()
     }
     
+//    private func setupWithTableView() {
+//        let card = MaterialCardView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.sendingCard.frame.height))
+//        card.pressAnimationEnabled = false
+//        card.update(forConfig: cardConfig)
+//        card.layer.shadowColor = UIColor.clear.cgColor
+//        
+//        let tableView = contentView as! UITableView
+//
+//        view.addSubview(tableView)
+//        tableView.snp.makeConstraints{make in
+//            make.leading.trailing.top.bottom.equalToSuperview()
+//        }
+//
+//        tableView.tableHeaderView = card
+//        createBackButton()
+//    }
+    
     private func setupWithTableView() {
-        let card = MaterialCardView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.sendingCard.frame.height))
-        card.pressAnimationEnabled = false
-        card.update(forConfig: cardConfig)
-        card.layer.shadowColor = UIColor.clear.cgColor
-        
-        let tableView = contentView as! UITableView
-        
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints{make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+        let containerView = UIView()
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints{make in
+            make.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        tableView.tableHeaderView = card
+        let tableView = contentView as! UITableView
+        containerView.addSubview(tableView)
+        tableView.snp.makeConstraints{make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
+        }
+        
+        let card = MaterialCardView(frame: CGRect.zero)
+        card.pressAnimationEnabled = false
+        card.update(forConfig: cardConfig)
+        
+        //TODO: Make bottom corners rounded
+//        card.layer.cornerRadius = cardConfig.cornerRadius ?? 0
+//        if #available(iOS 11.0, *) {
+//            view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+//        }
+        
+        containerView.addSubview(card)
+        
+        card.snp.makeConstraints{make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
+        }
+        
         createBackButton()
     }
     

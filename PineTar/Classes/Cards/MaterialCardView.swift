@@ -67,6 +67,7 @@ public class MaterialCardView: UIView {
     @IBInspectable var contentDescriptionColor: UIColor? = nil //UIColor.black
     
     var divide: UIView?
+    var ogHeight: CGFloat?
     private var headerLabel: UILabel?
     private var subheaderLabel: UILabel?
     private var descriptionTV: UITextView?
@@ -362,6 +363,8 @@ public class MaterialCardView: UIView {
     }
     
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        ogHeight = self.frame.height
+        
         if pressAnimationEnabled {
             UIView.animate(withDuration: 0.5, animations: {
                 self.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)

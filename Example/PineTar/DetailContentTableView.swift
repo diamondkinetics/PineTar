@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import PineTar
 
 class DetailContentTableView: UITableView, UITableViewDataSource, UITableViewDelegate {
     override init(frame: CGRect, style: UITableViewStyle) {
@@ -22,6 +23,7 @@ class DetailContentTableView: UITableView, UITableViewDataSource, UITableViewDel
     
     private func setup() {
         self.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
+        self.backgroundColor = ThemeManager.backgroundColor
         self.delegate = self
         self.dataSource = self
     }
@@ -33,6 +35,7 @@ class DetailContentTableView: UITableView, UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DefaultCell", for: indexPath)
         cell.textLabel?.text = "This is cell \(indexPath.row)"
+        cell.backgroundColor = ThemeManager.backgroundColor
         return cell
     }
     

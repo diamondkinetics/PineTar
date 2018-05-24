@@ -98,23 +98,21 @@ class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
         container.addSubview(from.view)
         
         source.statusBarHidden = false
-        let scrollView = (from.view.subviews.filter{$0 is UIScrollView}[0] as! UIScrollView)
+        let scrollViews = (from.view.subviews.filter{$0 is UIScrollView})
         var movingCard: UIView
-            
-        if scrollView is UITableView {
-            movingCard = scrollView
+        
+        if scrollViews.count == 0 {
+            movingCard = from.view.subviews[0]
         } else {
+            let scrollView = scrollViews[0] as! UIScrollView
             movingCard = scrollView.subviews[0]
+            scrollView.alpha = 0.0
         }
         
         movingCard.layer.masksToBounds = true
         
         movingCard.removeFromSuperview()
         from.view.backgroundColor = UIColor.clear
-        
-        if !(scrollView is UITableView) {
-            scrollView.alpha = 0.0
-        }
         
         //movingCard.setCornerRadius(radius: card.cornerRadius) // TODO: Re-add
         movingCard.frame.origin = CGPoint.init(x: 0, y: 0)
