@@ -78,7 +78,6 @@
 		EE4D20DC4E072903AC4A367A12C16A3C /* ClassExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A85B62646BABEE35C9034B965F50598E /* ClassExtensions.swift */; };
 		EEA743BC697D14C5C81659157CF7A281 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B0B421E92F364DC6DE1EFA03D04B8B /* LayoutConstraintItem.swift */; };
 		F3858D615E192A20486F5396DC91F73D /* Pods-PineTar_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6490A6BF90F1A47CBD19C4E8E46E3126 /* Pods-PineTar_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F522E7D905FD8A01ACB49EF14C3E4BD6 /* Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = 0F690E924C6AD041BBB4839DD2684B99 /* Info.plist */; };
 		F59B0DBA94577593C19D31768DBD017A /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E0575C5EDC968E7F88EB8CB954F9F /* ConstraintConstantTarget.swift */; };
 		FD1EB1DD9CF95CFCAEAB3DE427425BCA /* DescriptionConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE209F9C97723E67D210833D45532CCF /* DescriptionConfig.swift */; };
 /* End PBXBuildFile section */
@@ -105,7 +104,6 @@
 		027FD30F344FE77CA6566D97F4B5B34F /* Pods-PineTar_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PineTar_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		04322560EA54D90A4758F32E5B44304B /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		08A9FFDB07B2831CC8F016B447F7DD24 /* youtube-ios-player-helper-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "youtube-ios-player-helper-dummy.m"; sourceTree = "<group>"; };
-		0F690E924C6AD041BBB4839DD2684B99 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FD7E115E6786F4FB0A6BE51FFE1E399 /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		13BB492EFCA8ADED759886A6CF11D873 /* CardAnimators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CardAnimators.swift; sourceTree = "<group>"; };
 		159AB12DC3F4A993222278BA57FB1268 /* youtube-ios-player-helper.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "youtube-ios-player-helper.modulemap"; sourceTree = "<group>"; };
@@ -494,7 +492,6 @@
 				7536F97BA8C024025937E757CBC145DF /* ConstraintView+Extensions.swift */,
 				598F368219350D23ED12C61DF62CFF02 /* ConstraintViewDSL.swift */,
 				3D380805A5BE132AA5921002B125153A /* Debugging.swift */,
-				0F690E924C6AD041BBB4839DD2684B99 /* Info.plist */,
 				C1A101F3881E89E39B2ACDD73B05B8F5 /* LayoutConstraint.swift */,
 				95B0B421E92F364DC6DE1EFA03D04B8B /* LayoutConstraintItem.swift */,
 				EEBF46B6BC67BAC2A514D88E91991102 /* SnapKit.h */,
@@ -750,7 +747,6 @@
 				18B09B36AD496E984C79190CEF58B496 /* DividerConfig.swift in Sources */,
 				52CE6570CC3410F02BD2DFECE8C9A4DD /* HeaderConfig.swift in Sources */,
 				C03A00EB19CC105BF97E6595B5D8D833 /* ImageConfig.swift in Sources */,
-				F522E7D905FD8A01ACB49EF14C3E4BD6 /* Info.plist in Sources */,
 				65E5183120AE0A23009B6EFA /* MaterialImageCardView.swift in Sources */,
 				4E4CEE5584F6E5BDF4E270517A7EA996 /* LayoutConstraint.swift in Sources */,
 				EEA743BC697D14C5C81659157CF7A281 /* LayoutConstraintItem.swift in Sources */,
