@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PineTar'
-  s.version          = '0.1.7'
+  s.version          = '0.1.8'
   s.summary          = 'Helping developers get a grip on Material Design.'
 
 # This description is used to generate tags and improve search results.
