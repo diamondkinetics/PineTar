@@ -363,6 +363,27 @@ public class MaterialCardView: UIView {
         }
     }
     
+    
+    // MARK: Animator
+    func squeeze(byOffset offset: Int) {
+        headerHorzOffset = headerHorzOffset + (headerHorzOffset < 0 ? -1 : 1) * offset
+        imageHorzOffset = imageHorzOffset + (imageHorzOffset < 0 ? -1 : 1) * offset
+    }
+    
+    func updateConstraintsForSqueeze() {
+        imageView?.snp.removeConstraints()
+        imageView?.snp.makeConstraints{(make) in
+            make.height.equalTo(self.imageHeight)
+            make.width.equalTo(self.imageWidth)
+            self.align(make: make, alignment: self.imageAlignment, horzOffset: self.imageHorzOffset, vertOffset: self.imageVertOffset)
+        }
+        
+        headerLabel?.snp.removeConstraints()
+        headerLabel?.snp.makeConstraints{(make) in
+            self.align(make: make, alignment: self.headerAlignment, horzOffset: self.headerHorzOffset, vertOffset: self.headerVertOffset)
+        }
+    }
+    
     override public func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         ogHeight = self.frame.height
         ogFrame = self.frame

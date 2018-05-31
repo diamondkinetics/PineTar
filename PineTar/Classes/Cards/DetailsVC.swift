@@ -12,8 +12,19 @@ import UIKit
 public class DetailsVC: UIViewController {
     private var sendingCard: MaterialCardView
     public var cardConfig: MaterialCardConfig
+    public var useCurrentOffset: Bool = false {
+        didSet {
+            if useCurrentOffset {
+                self.offset = Int(sendingCard.ogFrame!.minX)
+            } else {
+                self.offset = nil
+            }
+        }
+    }
+    
     private var contentView: UIView
     private var source: CardAnimatorSourceVC!
+    private var offset: Int?
     
     public var statusBarHidden = false {
         didSet {
@@ -25,20 +36,10 @@ public class DetailsVC: UIViewController {
         }
     }
     
-    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView, useCurrentOffset: Bool) {
+    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView) {
         self.sendingCard = sendingCard
         self.cardConfig = cardConfig
         self.contentView = contentView
-        
-//        if useCurrentOffset {
-////            self.cardConfig.descriptionConfig =
-//            let offset = Int(sendingCard.ogFrame!.minX)
-//            let currentHeaderOffset = self.cardConfig.headerConfig!.headerHorzOffset ?? 0
-//            let currentImageOffset = self.cardConfig.imageConfig!.imageHorzOffset ?? 0
-//            
-//            self.cardConfig.headerConfig = self.cardConfig.headerConfig!.copyWithUpdates(headerHorzOffset: offset + currentHeaderOffset)
-//            self.cardConfig.imageConfig = self.cardConfig.imageConfig!.copyWithUpdates(imageHorzOffset: offset + currentImageOffset)
-//        }
         
         super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
     }
@@ -86,6 +87,10 @@ public class DetailsVC: UIViewController {
         let card = MaterialCardView(frame: CGRect.zero)
         card.pressAnimationEnabled = false
         card.update(forConfig: cardConfig)
+        if let offset = offset {
+            card.squeeze(byOffset: offset)
+            card.updateConstraintsForSqueeze()
+        }
         card.layer.shadowColor = UIColor.clear.cgColor
         scrollContentView.addSubview(card)
         
@@ -139,6 +144,11 @@ public class DetailsVC: UIViewController {
         let card = MaterialCardView(frame: CGRect.zero)
         card.pressAnimationEnabled = false
         card.update(forConfig: cardConfig)
+        
+        if let offset = offset {
+            card.squeeze(byOffset: offset)
+            card.updateConstraintsForSqueeze()
+        }
         
         //TODO: Make bottom corners rounded
 //        card.layer.cornerRadius = cardConfig.cornerRadius ?? 0
@@ -198,17 +208,17 @@ extension DetailsVC: UIViewControllerTransitioningDelegate {
         if let source = source as? CardAnimatorSourceVC, let card = source.sendingCard {
             self.source = source
             self.sendingCard = card
-            return CardAnimatorFrom(from: card)
+            return CardAnimatorFrom(from: card, offset: self.offset)
         } else if let source = source as? StatusBarHandler, let card = source.sendingCard {
             self.source = source.animatorSource
             self.sendingCard = card
-            return CardAnimatorFrom(from: card)
+            return CardAnimatorFrom(from: card, offset: self.offset )
         }
         
         return nil
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CardAnimatorTo(with: sendingCard, source: source)
+        return CardAnimatorTo(with: sendingCard, source: source, offset: self.offset)
     }
 }

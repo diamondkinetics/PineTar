@@ -13,9 +13,11 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
     // TODO : Create a bounce effect
     fileprivate var velocity = 0.5
     var card: MaterialCardView
+    private var offset: Int?
     
-    init(from card: MaterialCardView) {
+    init(from card: MaterialCardView, offset: Int?) {
         self.card = card
+        self.offset = offset
         super.init()
     }
     
@@ -54,6 +56,11 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
             make.bottom.equalTo(to.view.snp.bottom)
         }
         
+        if let offset = offset {
+            card.squeeze(byOffset: offset)
+            card.updateConstraintsForSqueeze()
+        }
+        
         UIView.animate(withDuration: velocity, animations: {
             container.layoutIfNeeded()
         }, completion: {_ in
@@ -67,6 +74,11 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
                 make.bottom.equalTo(cardSuperview!.snp.bottom).offset(-bottom)
                 make.leading.equalTo(cardSuperview!.snp.leading).offset(leading)
                 make.trailing.equalTo(cardSuperview!.snp.trailing).offset(-trailing)
+            }
+            
+            if let offset = self.offset {
+                self.card.squeeze(byOffset: -offset)
+                self.card.updateConstraintsForSqueeze()
             }
         })
         
@@ -82,10 +94,12 @@ class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
     fileprivate var velocity = 0.5
     var card: MaterialCardView
     var source: CardAnimatorSourceVC
+    private var offset: Int?
     
-    init(with card: MaterialCardView, source: CardAnimatorSourceVC) {
+    init(with card: MaterialCardView, source: CardAnimatorSourceVC, offset: Int?) {
         self.card = card
         self.source = source
+        self.offset = offset
         super.init()
     }
     
@@ -131,6 +145,12 @@ class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
             make.top.equalTo(card.snp.top)
             make.leading.equalTo(card.snp.leading)
             make.bottom.equalTo(card.snp.bottom)
+        }
+        
+        if let offset = offset {
+            let card = movingCard.subviews.filter{$0 is MaterialCardView}.first as? MaterialCardView
+            card?.squeeze(byOffset: -offset)
+            card?.updateConstraintsForSqueeze()
         }
         
         

@@ -54,7 +54,7 @@ class SocialExampleViewController: UIViewController, StatusBarHandler {
             // TODO: Wrap this inside of the pod
             let config = MaterialCardConfig(card: card)
             let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view, useCurrentOffset: true)
+            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view)
             self.present(vc, animated: true, completion: nil)
         }
     }
