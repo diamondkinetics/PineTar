@@ -14,6 +14,7 @@ public class DetailsVC: UIViewController {
     public var cardConfig: MaterialCardConfig
     private var contentView: UIView
     private var source: CardAnimatorSourceVC!
+    
     public var statusBarHidden = false {
         didSet {
             UIView.animate(withDuration: 0.5, animations: {
@@ -24,10 +25,21 @@ public class DetailsVC: UIViewController {
         }
     }
     
-    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView) {
+    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView, useCurrentOffset: Bool) {
         self.sendingCard = sendingCard
         self.cardConfig = cardConfig
         self.contentView = contentView
+        
+//        if useCurrentOffset {
+////            self.cardConfig.descriptionConfig =
+//            let offset = Int(sendingCard.ogFrame!.minX)
+//            let currentHeaderOffset = self.cardConfig.headerConfig!.headerHorzOffset ?? 0
+//            let currentImageOffset = self.cardConfig.imageConfig!.imageHorzOffset ?? 0
+//            
+//            self.cardConfig.headerConfig = self.cardConfig.headerConfig!.copyWithUpdates(headerHorzOffset: offset + currentHeaderOffset)
+//            self.cardConfig.imageConfig = self.cardConfig.imageConfig!.copyWithUpdates(imageHorzOffset: offset + currentImageOffset)
+//        }
+        
         super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
     }
     

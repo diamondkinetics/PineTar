@@ -37,7 +37,7 @@ class CardAnimatorFrom: NSObject, UIViewControllerAnimatedTransitioning {
         
         let largerLoc = card.convert(cardLoc, to: from.view)
         card.removeFromSuperview()
-        
+                
         let top = card.frame.minY
         let bottom = cardSuperview!.frame.height - card.frame.maxY
         let leading = card.frame.minX

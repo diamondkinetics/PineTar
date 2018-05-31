@@ -25,7 +25,11 @@ public class RoundMaterialButton: MaterialButton {
     
     private func setup() {
         self.addCornerRadius(radius: self.bounds.width/2)
-        self.addShadow()
+        
+        if hasShadow {
+            self.addShadow()
+        }
+        
         self.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         
         if ThemeManager.buttonsAreHighlightColor {

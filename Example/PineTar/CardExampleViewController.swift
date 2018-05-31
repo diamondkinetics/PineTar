@@ -46,7 +46,7 @@ class CardExampleViewController: UIViewController, StatusBarHandler {
             let config = MaterialCardConfig(card: card)
 //            let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
             let view = DetailContentTableView(frame: CGRect.zero, style: UITableViewStyle.plain)
-            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view)
+            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view, useCurrentOffset: false)
             self.present(vc, animated: true, completion: nil)
         }
     }

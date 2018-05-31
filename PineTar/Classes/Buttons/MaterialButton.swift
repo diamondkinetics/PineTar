@@ -11,6 +11,7 @@ import UIKit
 
 @IBDesignable
 public class MaterialButton: UIButton {
+    @IBInspectable var hasShadow: Bool = true
     
     override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
@@ -42,7 +43,10 @@ public class MaterialButton: UIButton {
         self.setTitleColor(ThemeManager.textHighlightColor, for: .normal)
         self.titleLabel?.font = ThemeManager.font.withSize(20)
         addCornerRadius(radius: 4)
-        addShadow()
+        
+        if hasShadow {
+            addShadow()
+        }
         
         self.addTarget(self, action: #selector(pressDown), for: UIControlEvents.touchDown)
         self.addTarget(self, action: #selector(pressUp), for: UIControlEvents.touchCancel)
