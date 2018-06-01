@@ -113,6 +113,11 @@ class CardAnimatorTo: NSObject, UIViewControllerAnimatedTransitioning {
         
         source.statusBarHidden = false
         let scrollViews = (from.view.subviews.filter{$0 is UIScrollView})
+        let otherViews = from.view.subviews.filter{!($0 is UIScrollView)}
+        for view in otherViews {
+            UIView.animate(withDuration: 0.2, animations: { view.alpha = 0 })
+        }
+        
         var movingCard: UIView
         
         if scrollViews.count == 0 {
