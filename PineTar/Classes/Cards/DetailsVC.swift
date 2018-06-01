@@ -74,7 +74,8 @@ public class DetailsVC: UIViewController {
         scrollView.backgroundColor = ThemeManager.backgroundColor
         self.view.addSubview(scrollView)
         scrollView.snp.makeConstraints{make in
-            make.bottom.top.leading.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-(self.bottomFloatView?.frame.height ?? 0))
         }
         
         let scrollContentView = UIView()
@@ -124,8 +125,9 @@ public class DetailsVC: UIViewController {
         let tableView = contentView as! UITableView
         containerView.addSubview(tableView)
         tableView.snp.makeConstraints{make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
+            make.bottom.equalToSuperview().offset(-(self.bottomFloatView?.frame.height ?? 0))
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
