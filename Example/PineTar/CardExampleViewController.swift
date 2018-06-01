@@ -45,9 +45,7 @@ class CardExampleViewController: UIViewController, StatusBarHandler {
             // TODO: Wrap this inside of the pod
             let config = MaterialCardConfig(card: card)
             let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-            let floatingView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
-            floatingView.backgroundColor = UIColor.blue
-            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view, bottomFloatView: floatingView)
+            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view)
             self.present(vc, animated: true, completion: nil)
         }
     }
