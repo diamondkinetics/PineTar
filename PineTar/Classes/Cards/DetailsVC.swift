@@ -12,19 +12,11 @@ import UIKit
 public class DetailsVC: UIViewController {
     private var sendingCard: MaterialCardView
     public var cardConfig: MaterialCardConfig
-    public var useCurrentOffset: Bool = false {
-        didSet {
-            if useCurrentOffset {
-                self.offset = Int(sendingCard.ogFrame!.minX)
-            } else {
-                self.offset = nil
-            }
-        }
-    }
     
     private var contentView: UIView
     private var source: CardAnimatorSourceVC!
     private var offset: Int?
+    private var bottomFloatView: UIView?
     
     public var statusBarHidden = false {
         didSet {
@@ -36,10 +28,21 @@ public class DetailsVC: UIViewController {
         }
     }
     
-    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView) {
+    public var useCurrentOffset: Bool = false {
+        didSet {
+            if useCurrentOffset {
+                self.offset = Int(sendingCard.ogFrame!.minX)
+            } else {
+                self.offset = nil
+            }
+        }
+    }
+    
+    public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView, bottomFloatView: UIView? = nil) {
         self.sendingCard = sendingCard
         self.cardConfig = cardConfig
         self.contentView = contentView
+        self.bottomFloatView = bottomFloatView
         
         super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
     }
@@ -61,6 +64,9 @@ public class DetailsVC: UIViewController {
         } else {
             setupClassic()
         }
+        
+        createBackButton()
+        addFloatView()
     }
     
     private func setupClassic() {
@@ -81,7 +87,7 @@ public class DetailsVC: UIViewController {
         scrollContentView.snp.makeConstraints{make in
             make.leading.trailing.bottom.top.equalToSuperview()
             make.width.equalTo(self.view.snp.width)
-            make.height.equalTo(sendingCard.ogHeight ?? sendingCard.frame.height + height) // TODO: This will have to be calculated
+            make.height.equalTo((sendingCard.ogHeight ?? sendingCard.frame.height) + height) // TODO: This will have to be calculated
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
@@ -106,26 +112,7 @@ public class DetailsVC: UIViewController {
             make.height.equalTo(height)
             make.width.equalToSuperview()
         }
-        
-        createBackButton()
     }
-    
-//    private func setupWithTableView() {
-//        let card = MaterialCardView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.sendingCard.frame.height))
-//        card.pressAnimationEnabled = false
-//        card.update(forConfig: cardConfig)
-//        card.layer.shadowColor = UIColor.clear.cgColor
-//        
-//        let tableView = contentView as! UITableView
-//
-//        view.addSubview(tableView)
-//        tableView.snp.makeConstraints{make in
-//            make.leading.trailing.top.bottom.equalToSuperview()
-//        }
-//
-//        tableView.tableHeaderView = card
-//        createBackButton()
-//    }
     
     private func setupWithTableView() {
         let containerView = UIView()
@@ -151,19 +138,24 @@ public class DetailsVC: UIViewController {
         }
         
         //TODO: Make bottom corners rounded
-//        card.layer.cornerRadius = cardConfig.cornerRadius ?? 0
-//        if #available(iOS 11.0, *) {
-//            view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-//        }
-        
         containerView.addSubview(card)
         
         card.snp.makeConstraints{make in
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
         }
+    }
+    
+    private func addFloatView() {
+        guard let floatView = self.bottomFloatView else {return}
         
-        createBackButton()
+        let floatViewHeight = floatView.frame.height
+        self.view.addSubview(floatView)
+        
+        floatView.snp.makeConstraints{make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.height.height.equalTo(floatViewHeight)
+        }
     }
     
     private func createBackButton() {

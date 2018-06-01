@@ -39,6 +39,7 @@ class SocialExampleViewController: UIViewController, StatusBarHandler {
             data.append(baseConfig.copyWithUpdates(dividerConfig: DividerConfig(divideImage: image), imageConfig: ImageConfig(image: authImage), headerConfig: HeaderConfig.init(header: title, subheader: author), descriptionConfig: DescriptionConfig(contentDescription: description)))
         }
         
+        tableView.cellHeight = 275
         tableView.data = data
     }
     

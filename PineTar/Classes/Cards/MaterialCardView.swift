@@ -295,6 +295,7 @@ public class MaterialCardView: UIView {
         self.subheaderLabel = label
     }
     
+    // TODO: Customize this a little bit beter
     private func createDescription() {
         guard let desc = contentDescription, let divide = divide else {return}
         let label = UITextView()
@@ -302,12 +303,13 @@ public class MaterialCardView: UIView {
         label.text = desc
         label.textColor = contentDescriptionColor
         label.font = ThemeManager.font.withSize(contentDescriptionSize)
+        
         self.addSubview(label)
         label.snp.makeConstraints{(make) in
             make.leading.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-5)
             make.top.equalTo(divide.snp.bottom).offset(5)
-            make.height.equalTo(60)
+            make.height.equalTo(50)
         }
         
         self.descriptionTV = label
@@ -365,6 +367,7 @@ public class MaterialCardView: UIView {
     
     
     // MARK: Animator
+    // TODO: I think I can combine these squeexe functions
     func squeeze(byOffset offset: Int) {
         headerHorzOffset = headerHorzOffset + (headerHorzOffset < 0 ? -1 : 1) * offset
         imageHorzOffset = imageHorzOffset + (imageHorzOffset < 0 ? -1 : 1) * offset
