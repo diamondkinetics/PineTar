@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DetailContentView" customModule="PineTar_Example" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="366" height="465"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -25,37 +25,36 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="StH-HV-Ygv" customClass="YTPlayerView">
-                    <rect key="frame" x="30" y="220" width="306" height="180"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="180" id="7vv-tM-BQ2"/>
-                    </constraints>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thanks for reading!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQe-UC-Ehv">
-                    <rect key="frame" x="109.5" y="421" width="148" height="20.5"/>
+                    <rect key="frame" x="109.5" y="413" width="148" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image" translatesAutoresizingMaskIntoConstraints="NO" id="v1G-57-3in">
+                    <rect key="frame" x="30" y="213" width="306" height="180"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="fea-4H-J9W"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="StH-HV-Ygv" firstAttribute="top" secondItem="akk-sj-Ooc" secondAttribute="bottom" constant="15" id="K0J-bS-eS1"/>
-                <constraint firstItem="wQe-UC-Ehv" firstAttribute="top" secondItem="StH-HV-Ygv" secondAttribute="bottom" constant="21" id="KXW-ON-Sji"/>
-                <constraint firstItem="StH-HV-Ygv" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="L50-0W-K73"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="v1G-57-3in" secondAttribute="trailing" constant="30" id="FMe-bR-SWi"/>
+                <constraint firstItem="v1G-57-3in" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="Hh1-d8-dbg"/>
                 <constraint firstItem="wQe-UC-Ehv" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Lll-FH-P8t"/>
                 <constraint firstItem="akk-sj-Ooc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Ykf-76-ZYE"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="StH-HV-Ygv" secondAttribute="trailing" constant="30" id="fVB-kh-nhG"/>
+                <constraint firstItem="v1G-57-3in" firstAttribute="top" secondItem="akk-sj-Ooc" secondAttribute="bottom" constant="8" id="eWJ-Bj-sJH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="akk-sj-Ooc" secondAttribute="trailing" constant="16" id="fzQ-Li-65h"/>
                 <constraint firstItem="akk-sj-Ooc" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="t0I-8z-xV9"/>
+                <constraint firstItem="wQe-UC-Ehv" firstAttribute="top" secondItem="v1G-57-3in" secondAttribute="bottom" constant="20" id="tnz-QJ-NVz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <connections>
-                <outlet property="playerView" destination="StH-HV-Ygv" id="eZ9-vU-nif"/>
-            </connections>
             <point key="canvasLocation" x="20" y="-40.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="image" width="1600" height="900"/>
+    </resources>
 </document>

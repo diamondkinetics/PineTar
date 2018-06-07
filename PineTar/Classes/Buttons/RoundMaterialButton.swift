@@ -43,23 +43,15 @@ public class RoundMaterialButton: MaterialButton {
     
     private func setup() {
         self.addCornerRadius(radius: self.bounds.width/2)
-        
-        if hasShadow {
-            self.addShadow()
-        }
+        if hasShadow { self.addShadow() }
         
         self.imageEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-        
-        if ThemeManager.buttonsAreHighlightColor {
-            self.tintColor = ThemeManager.textHighlightColor
-        } else {
-            self.tintColor = ThemeManager.highlightColor
-        }
+        self.tintColor = ThemeManager.useSecondaryColorForButtons ? ThemeManager.onSecondaryColor ?? ThemeManager.onPrimaryColor : ThemeManager.onPrimaryColor
         
         if let image = buttonImage {
             self.setImage(image, for: .normal)
         } else {
-            let image = UIImage.init(named: "plus", in: Bundle(for: type(of: self)), compatibleWith: nil)
+            let image = UIImage(named: "plus", in: Bundle(for: type(of: self)), compatibleWith: nil)
             self.setImage(image, for: .normal)
         }
     }

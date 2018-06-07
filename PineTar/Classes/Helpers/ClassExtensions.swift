@@ -42,7 +42,7 @@ public extension UIView {
 }
 
 public extension UIViewController {
-    public func customNavController(withShadow: Bool) {
+    public func customNavController(withShadow: Bool, titleColor: UIColor? = nil) {
         if withShadow {
             self.navigationController?.navigationBar.addShadow()
         }
@@ -50,7 +50,7 @@ public extension UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.barTintColor = ThemeManager.primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: ThemeManager.font.withSize(22), NSAttributedStringKey.foregroundColor: ThemeManager.titleColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: ThemeManager.font.withSize(22), NSAttributedStringKey.foregroundColor: titleColor ?? ThemeManager.onPrimaryColor]
     }
     
     public func removeDefaultNavBarShadow() {

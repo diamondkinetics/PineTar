@@ -28,35 +28,46 @@ import Foundation
 import UIKit
 
 // TODO: MAke all classes open for Theme overrides
-// TODO: Modify themes to reflect the actual color theme
-// primary, primary variant, primary variant 2, secondary, secondary variant, background, surface, error
-// on primary, on secondary, on background, on surface, on error
+// TODO: Add support for color variants
+// Checkout the following resource to create your material theme
 // https://material.io/design/color/the-color-system.html#color-theme-creation
 
 public protocol Theme {
     var primaryColor: UIColor {get}
-    var highlightColor: UIColor {get}
-    var textColor: UIColor {get}
-    var titleColor: UIColor {get}
-    var textHighlightColor: UIColor {get}
+    var secondaryColor: UIColor? {get}
     var backgroundColor: UIColor {get}
+    var surfaceColor: UIColor {get}
+    var errorColor: UIColor  {get}
+    
+    // Colors used for text that have readability against your set colors
+    var onPrimaryColor: UIColor {get}
+    var onSecondaryColor: UIColor? {get}
+    var onBackgroundColor: UIColor {get}
+    var onSurfaceColor: UIColor {get}
+    var onErrorColor: UIColor {get}
+    
     var font: UIFont {get}
-    var buttonsAreHighlightColor: Bool {get}
 }
 
 public protocol SimpleTheme: Theme {}
+
+// Simple themese give some defaults that allow you to only define a few colors to get started
 extension SimpleTheme {
-    var titleColor: UIColor {return highlightColor}
-    var textHighlightColor: UIColor {return highlightColor}
-    var buttonsAreHighlightColor: Bool {return false}
+    var secondaryColor: UIColor? {return nil}
+    var surfaceColor: UIColor {return UIColor.white}
+    var errorColor: UIColor {return UIColor(red: 176.0/255.0, green: 0, blue: 32.0/255.0, alpha: 1.0)}
+    var onSurfaceColor: UIColor {return UIColor.black}
+    var onErrorColor: UIColor {return UIColor.white}
+    var onSecondaryColor: UIColor? {return nil}
 }
 
 struct DefaultTheme: SimpleTheme {
     let primaryColor: UIColor = UIColor(red: 86.0/255.0, green: 40.0/255.0, blue: 229.0/255.0, alpha: 1.0)
     let backgroundColor: UIColor = UIColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0)
-    let highlightColor: UIColor =  UIColor.white
+    let onPrimaryColor: UIColor = UIColor.white
+    let onBackgroundColor: UIColor = UIColor.black
+
     let font: UIFont = UIFont(name: "Futura", size: 20)!
-    var textColor: UIColor = UIColor.black
 }
 
 public class ThemeManager {
@@ -64,13 +75,20 @@ public class ThemeManager {
     private init() {}
     
     public static var primaryColor: UIColor {return theme.primaryColor}
+    public static var secondaryColor: UIColor? {return theme.secondaryColor}
     public static var backgroundColor: UIColor {return theme.backgroundColor}
-    public static var highlightColor: UIColor {return theme.highlightColor}
-    public static var textColor: UIColor {return theme.textColor}
-    public static var textHighlightColor: UIColor {return theme.textHighlightColor}
-    public static var buttonsAreHighlightColor: Bool {return theme.buttonsAreHighlightColor}
-    public static var titleColor: UIColor {return theme.titleColor}
+    public static var surfaceColor: UIColor {return theme.surfaceColor}
+    public static var errorColor: UIColor {return theme.errorColor}
+    
+    public static var onPrimaryColor: UIColor {return theme.onPrimaryColor}
+    public static var onSecondaryColor: UIColor? {return theme.onSecondaryColor}
+    public static var onBackgroundColor: UIColor {return theme.onBackgroundColor}
+    public static var onSurfaceColor: UIColor {return theme.onSurfaceColor}
+    public static var onErrorColor: UIColor {return theme.onErrorColor}
+    
     public static var font: UIFont {return theme.font}
+    
+    public static var useSecondaryColorForButtons: Bool = false { didSet { if secondaryColor == nil {useSecondaryColorForButtons = false } } }
     
     public static func setTheme(theme: Theme) {
         self.theme = theme

@@ -133,7 +133,7 @@ public class TextStep: Step, UITextFieldDelegate {
         let label = UITextField()
         label.delegate = self
         label.text = value as? String
-        label.textColor = ThemeManager.textColor
+        label.textColor = ThemeManager.onSurfaceColor
         label.textAlignment = .center
         label.font = ThemeManager.font.withSize(24)
         label.autocorrectionType = .no
@@ -155,7 +155,7 @@ public class NumberStep: Step, UITextFieldDelegate {
         resultView?.removeFromSuperview()
         let textField = UITextField()
         textField.delegate = self
-        textField.textColor = ThemeManager.textColor
+        textField.textColor = ThemeManager.onSurfaceColor
         textField.textAlignment = .center
         textField.font = ThemeManager.font.withSize(24)
         textField.keyboardType = .numberPad

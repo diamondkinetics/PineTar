@@ -114,7 +114,7 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
             let card = MaterialCardView(frame: CGRect.zero)
             card.layer.cornerRadius = 4
             card.pressAnimationEnabled = false
-            card.backgroundColor = UIColor.white
+            card.backgroundColor = ThemeManager.surfaceColor
             contentView.addSubview(card)
             
             card.snp.makeConstraints{make in
@@ -132,7 +132,7 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
             let label = UILabel()
             label.text = step.text
             label.font = ThemeManager.font.withSize(18)
-            label.textColor = ThemeManager.textColor
+            label.textColor = ThemeManager.onSurfaceColor
             card.addSubview(label)
             
             label.snp.makeConstraints{make in

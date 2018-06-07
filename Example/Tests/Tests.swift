@@ -1,5 +1,4 @@
 import XCTest
-import PineTar
 
 class Tests: XCTestCase {
     

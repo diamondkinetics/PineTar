@@ -10,7 +10,6 @@
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
-		654937E020AC65B3009E0AA8 /* DetailContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654937DF20AC65B3009E0AA8 /* DetailContentView.swift */; };
 		654937E220AC7E2F009E0AA8 /* StepperExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */; };
 		6582F9EB20AB7A080094EA99 /* DetailContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6582F9EA20AB7A080094EA99 /* DetailContent.xib */; };
 		6590DF6D20AA39CC00CFF1C3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6590DF6C20AA39CC00CFF1C3 /* Main.storyboard */; };
@@ -45,7 +44,6 @@
 		607FACE51AFB9204008FA782 /* PineTar_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PineTar_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		654937DF20AC65B3009E0AA8 /* DetailContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailContentView.swift; sourceTree = "<group>"; };
 		654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperExampleVC.swift; sourceTree = "<group>"; };
 		6582F9EA20AB7A080094EA99 /* DetailContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailContent.xib; sourceTree = "<group>"; };
 		6590DF6C20AA39CC00CFF1C3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				6590DF6F20AA39D600CFF1C3 /* CardExampleViewController.swift */,
 				6590DF7020AA39D600CFF1C3 /* SocialExampleViewController.swift */,
 				654937E120AC7E2F009E0AA8 /* StepperExampleVC.swift */,
-				654937DF20AC65B3009E0AA8 /* DetailContentView.swift */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				6582F9EA20AB7A080094EA99 /* DetailContent.xib */,
 				6590DF6C20AA39CC00CFF1C3 /* Main.storyboard */,
@@ -186,7 +183,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				FDD2A7A7BCC3533DA14C1272 /* [CP] Embed Pods Frameworks */,
-				914E465A6BB0B1A78C8510F9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,8 +201,6 @@
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				832AE3A8BD2F920E9A8E88A9 /* [CP] Embed Pods Frameworks */,
-				69F80B80F656F92A538D244C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -300,21 +294,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		69F80B80F656F92A538D244C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PineTar_Tests/Pods-PineTar_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		78917DAC6D58FF6446CF3843 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,36 +312,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		832AE3A8BD2F920E9A8E88A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PineTar_Tests/Pods-PineTar_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		914E465A6BB0B1A78C8510F9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PineTar_Example/Pods-PineTar_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FDD2A7A7BCC3533DA14C1272 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -371,12 +320,10 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PineTar_Example/Pods-PineTar_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PineTar/PineTar.framework",
-				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PineTar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -392,7 +339,6 @@
 			files = (
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				6590DF7120AA39D600CFF1C3 /* TabVCExample.swift in Sources */,
-				654937E020AC65B3009E0AA8 /* DetailContentView.swift in Sources */,
 				654937E220AC7E2F009E0AA8 /* StepperExampleVC.swift in Sources */,
 				6590DF7320AA39D600CFF1C3 /* SocialExampleViewController.swift in Sources */,
 				6590DF7220AA39D600CFF1C3 /* CardExampleViewController.swift in Sources */,
@@ -569,10 +515,7 @@
 			baseConfigurationReference = 1488E624FF256A344D5B3261 /* Pods-PineTar_Tests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CL34E8X5T2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -581,6 +524,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -591,14 +535,12 @@
 			baseConfigurationReference = 4FFA371501F6086CB0F1E3B2 /* Pods-PineTar_Tests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CL34E8X5T2;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};

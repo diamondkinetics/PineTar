@@ -52,13 +52,10 @@ public class MaterialButton: UIButton {
     }
     
     private func setup() {
-        if ThemeManager.buttonsAreHighlightColor {
-            self.backgroundColor = ThemeManager.highlightColor
-        } else {
-            self.backgroundColor = ThemeManager.primaryColor
-        }
+        self.backgroundColor = ThemeManager.useSecondaryColorForButtons ? ThemeManager.secondaryColor! : ThemeManager.primaryColor
+        let titleColor = ThemeManager.useSecondaryColorForButtons ? ThemeManager.onSecondaryColor ?? ThemeManager.onPrimaryColor : ThemeManager.onPrimaryColor
+        self.setTitleColor(titleColor, for: .normal)
         
-        self.setTitleColor(ThemeManager.textHighlightColor, for: .normal)
         self.titleLabel?.font = ThemeManager.font.withSize(20)
         addCornerRadius(radius: 4)
         
@@ -76,6 +73,7 @@ public class MaterialButton: UIButton {
     }
     
     @objc func pressDown() {
+        if !hasShadow { return }
         UIView.animate(withDuration: 0.5, animations: {
             self.layer.shadowOffset = CGSize(width: 0, height: 4)
             self.layer.shadowOpacity = 0.5
@@ -84,6 +82,7 @@ public class MaterialButton: UIButton {
     }
     
     @objc func pressUp() {
+        if !hasShadow { return }
         self.addShadow()
     }
 }

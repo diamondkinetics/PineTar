@@ -85,7 +85,7 @@ public class MaterialTabView: UIView  {
     private func createSelectedView() {
         selectedView?.removeFromSuperview()
         let view = UIView()
-        view.backgroundColor = ThemeManager.highlightColor
+        view.backgroundColor = ThemeManager.secondaryColor ?? ThemeManager.onPrimaryColor
         self.addSubview(view)
         self.selectedView = view
         selectedViewMakeConstraints(withOffset: 0)
@@ -111,7 +111,7 @@ public class MaterialTabView: UIView  {
             let option = options![i]
             let tab = UIButton(type: UIButtonType.system)
             tab.addTarget(self, action: #selector(didPressOption(sender:)), for: UIControlEvents.touchUpInside)
-            let color = i == selectedIndex ? ThemeManager.textHighlightColor : UIColor.lightGray
+            let color = i == selectedIndex ? ThemeManager.onPrimaryColor : UIColor.lightGray
             tab.setTitleColor(color, for: .normal)
             tab.titleLabel?.font =  ThemeManager.font.withSize(16)
             tab.setTitle(option, for: .normal)
@@ -132,7 +132,7 @@ public class MaterialTabView: UIView  {
         
         for i in 0..<tabs.count {
             let tab = tabs[i] as! UIButton
-            let color = i == index ? ThemeManager.textHighlightColor : UIColor.lightGray
+            let color = i == index ? ThemeManager.onPrimaryColor : UIColor.lightGray
             tab.setTitleColor(color, for: .normal)
         }
         
