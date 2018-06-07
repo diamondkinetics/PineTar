@@ -43,8 +43,8 @@ class SocialExampleViewController: UIViewController, StatusBarHandler {
                             "A very nice field, not Citizens Bank but I guess it will do",
                             "In a very touching story, two men stand close to a river so that they can take a photo"]
         let authors = ["Tom Martin", "P. Phanatic", "N. Field"]
-        let images = [#imageLiteral(resourceName: "phinatic"), #imageLiteral(resourceName: "image"), #imageLiteral(resourceName: "justin")]
-        let authImages = [#imageLiteral(resourceName: "justin"), #imageLiteral(resourceName: "phinatic"), #imageLiteral(resourceName: "image")]
+        let images = [#imageLiteral(resourceName: "woman"), #imageLiteral(resourceName: "plane"), #imageLiteral(resourceName: "tree")]
+        let authImages = [#imageLiteral(resourceName: "tree"), #imageLiteral(resourceName: "woman"), #imageLiteral(resourceName: "plane")]
         var data: [MaterialCardConfig] = []
         
         for i in 0..<titles.count {

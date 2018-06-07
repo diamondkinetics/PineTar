@@ -38,7 +38,7 @@ public protocol EnableStepDelegate {
     func disableStep(step: Step)
 }
 
-public class Step: NSObject {
+open class Step: NSObject {
     var skippable: Bool
     var text: String
     public var value: Any?
@@ -78,23 +78,37 @@ public class Step: NSObject {
 
 public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     private var vc: UIViewController!
-    private var imageView: MaterialCardView!
+    private lazy var imageView: MaterialCardView = MaterialImageCardView(frame: CGRect.zero)
+    private lazy var tempView: UIView = UIView()
     
     override func createView(vc: UIViewController) -> UIView {
         resultView?.removeFromSuperview()
         self.vc = vc
         let view = UIView()
         
-        let imageView = MaterialImageCardView(frame: CGRect.zero)
-        imageView.backgroundColor = UIColor.gray
-        let image = UIImage(named: "outline_photo_white_48pt", in: Bundle(for: type(of: self)), compatibleWith: nil)
-        imageView.update(forConfig: MaterialCardConfig(cornerRadius: 10, dividerConfig: DividerConfig(divideImage: image), headerConfig: HeaderConfig(header: "")))
-        self.imageView = imageView
+        let image = UIImage(named: "outline_photo_white_48pt", in: Bundle(for: type(of: self)), compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
+        tempView.backgroundColor = UIColor.gray
+        tempView.layer.cornerRadius = 4
+        let tempImageView = UIImageView(image: image)
+        tempImageView.image = image
+        tempImageView.tintColor = UIColor.white
+        tempView.addSubview(tempImageView)
+        imageView.addSubview(tempView)
+        
+        tempImageView.snp.makeConstraints{make in
+            make.width.height.equalTo(60)
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        tempView.snp.makeConstraints{make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        imageView.update(forConfig: MaterialCardConfig(cornerRadius: 10, headerConfig: HeaderConfig(header: "")))
         imageView.cardPressedAction = {card in
             self.imageTapped()
         }
 
-        
         view.addSubview(imageView)
         imageView.snp.makeConstraints{make in
             make.top.equalToSuperview()
@@ -119,6 +133,7 @@ public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationContr
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        if tempView.superview != nil {tempView.removeFromSuperview()}
         readyToContinue = true
         vc.dismiss(animated: true, completion: nil)
         imageView.update(forConfig: MaterialCardConfig(dividerConfig: DividerConfig(divideImage: image)))

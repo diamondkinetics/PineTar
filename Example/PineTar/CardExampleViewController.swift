@@ -38,7 +38,7 @@ class CardExampleViewController: UIViewController, StatusBarHandler {
         
         let baseConfig = tableView.getDefaultCardConfig()
         let titles = ["First Title", "Second Title", "Third Title", "Fourth Title", "Fifth Title"]
-        let images = [#imageLiteral(resourceName: "image"), #imageLiteral(resourceName: "phinatic"), #imageLiteral(resourceName: "justin"), #imageLiteral(resourceName: "image"), #imageLiteral(resourceName: "phinatic")]
+        let images = [#imageLiteral(resourceName: "woman"), #imageLiteral(resourceName: "tree"), #imageLiteral(resourceName: "plane"), #imageLiteral(resourceName: "woman"), #imageLiteral(resourceName: "tree")]
         var data: [MaterialCardConfig] = []
         
         for i in 0..<titles.count {

@@ -129,6 +129,7 @@ public class MaterialCardView: UIView {
     func setup() {
         setDefaults()
         self.layer.cornerRadius = cornerRadius
+        self.backgroundColor = ThemeManager.surfaceColor
         self.addShadow()
         
         createDivide()

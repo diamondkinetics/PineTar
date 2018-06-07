@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDt-8R-NQa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="KDt-8R-NQa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,7 +54,7 @@
                                                     <rect key="frame" x="15" y="16" width="345" height="280"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="image" keyPath="divideImage" value="image"/>
+                                                        <userDefinedRuntimeAttribute type="image" keyPath="divideImage" value="woman"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="divideHeight">
                                                             <real key="value" value="200"/>
                                                         </userDefinedRuntimeAttribute>
@@ -247,6 +247,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="image" width="1600" height="900"/>
+        <image name="woman" width="7952" height="5304"/>
     </resources>
 </document>

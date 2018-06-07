@@ -30,10 +30,10 @@ import UIKit
 @IBDesignable
 public class MaterialStepperView: UIView, EnableStepDelegate {
     public var incompleteColor: UIColor = UIColor.gray
-    private var scrollView: UIScrollView!
-    private var contentView: UIView!
+    private lazy var scrollView: UIScrollView = UIScrollView()
+    private lazy var contentView: UIView = UIView()
     private var progressColorView: UIView!
-    private var currIndex: Int!
+    private var currIndex: Int = 0
     public var vc: UIViewController!
     public var completion: ((Array<Any>) -> (Void))?
     private var buttons: [UIButton]!
@@ -55,9 +55,6 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
         progressView.backgroundColor = UIColor.white
         progressView.addShadow()
         
-        currIndex = 0
-        
-        scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
         
         scrollView.isScrollEnabled = false
@@ -71,7 +68,6 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
             make.top.equalToSuperview().offset(50)
         }
         
-        contentView = UIView()
         contentView.backgroundColor = ThemeManager.backgroundColor
         scrollView.addSubview(contentView)
         
@@ -99,7 +95,7 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
         }
         
         progressColorView = UIView()
-        progressColorView.backgroundColor = ThemeManager.primaryColor
+        progressColorView.backgroundColor = ThemeManager.useSecondaryColorForButtons ? ThemeManager.secondaryColor! : ThemeManager.primaryColor
         progressBar.addSubview(progressColorView)
         progressColorView.snp.makeConstraints{make in
             make.leading.top.bottom.equalToSuperview()
