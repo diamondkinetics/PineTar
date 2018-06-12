@@ -84,6 +84,9 @@ public class MaterialCardView: UIView {
     @IBInspectable var contentDescriptionSize: CGFloat = -1 //12
     @IBInspectable var contentDescriptionColor: UIColor? = nil //UIColor.black
     
+    var customView: UIView?
+    var customViewHeight: CGFloat?
+    
     var divide: UIView?
     var ogHeight: CGFloat? // TODO: Remove ogHeight ... use ogFrame
     var ogFrame: CGRect?
@@ -137,6 +140,10 @@ public class MaterialCardView: UIView {
         createHeader()
         createSubheader()
         createDescription()
+        
+        if let customView = customView, let height = self.customViewHeight {
+            createCustomView(customViewDescription: CustomViewConfig(customView: customView, height: height))
+        }
     }
     
     // MARK: Updates
@@ -158,6 +165,10 @@ public class MaterialCardView: UIView {
         
         if let descriptionConfig = config.descriptionConfig {
             updateDescription(descriptionConfig: descriptionConfig)
+        }
+        
+        if let customViewConfig = config.customViewConfig {
+            createCustomView(customViewDescription: customViewConfig)
         }
     }
     
@@ -332,6 +343,13 @@ public class MaterialCardView: UIView {
         }
         
         self.descriptionTV = label
+    }
+    
+    func createCustomView(customViewDescription: CustomViewConfig) {
+        let customView = customViewDescription.customView
+        self.customView?.removeFromSuperview()
+        customView.frame = CGRect(x: 0, y: self.frame.height - customViewDescription.height, width: self.frame.width, height: customViewDescription.height)
+        self.addSubview(customView)
     }
     
     private func align(make: ConstraintMaker, alignment: Int, horzOffset: Int, vertOffset: Int) {

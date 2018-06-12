@@ -37,14 +37,16 @@ public struct MaterialCardConfig {
     var imageConfig: ImageConfig?
     var headerConfig: HeaderConfig?
     var descriptionConfig: DescriptionConfig?
+    var customViewConfig: CustomViewConfig?
 
-    public init(cornerRadius: CGFloat? = nil, backgroundColor: UIColor? = nil, dividerConfig: DividerConfig? = nil, imageConfig: ImageConfig? = nil, headerConfig: HeaderConfig? = nil, descriptionConfig: DescriptionConfig? = nil) {
+    public init(cornerRadius: CGFloat? = nil, backgroundColor: UIColor? = nil, dividerConfig: DividerConfig? = nil, imageConfig: ImageConfig? = nil, headerConfig: HeaderConfig? = nil, descriptionConfig: DescriptionConfig? = nil, customViewConfig: CustomViewConfig? = nil) {
         self.cornerRadius = cornerRadius
         self.backgroundColor = backgroundColor
         self.dividerConfig = dividerConfig
         self.imageConfig = imageConfig
         self.headerConfig = headerConfig
         self.descriptionConfig = descriptionConfig
+        self.customViewConfig = customViewConfig
     }
 
     public init(card: MaterialCardView) {
@@ -54,10 +56,11 @@ public struct MaterialCardConfig {
         self.imageConfig = ImageConfig(card: card)
         self.headerConfig = HeaderConfig(card: card)
         self.descriptionConfig = DescriptionConfig(card: card)
+        if let customView = card.customView { self.customViewConfig = CustomViewConfig(customView: customView, height: card.customViewHeight!) }
     }
 
     // TODO: If they wish to update by setting something to nil, this will not work
-    public func copyWithUpdates(cornerRadius: CGFloat? = nil, dividerConfig: DividerConfig? = nil, imageConfig: ImageConfig? = nil, headerConfig: HeaderConfig? = nil, descriptionConfig: DescriptionConfig? = nil) -> MaterialCardConfig {
+    public func copyWithUpdates(cornerRadius: CGFloat? = nil, dividerConfig: DividerConfig? = nil, imageConfig: ImageConfig? = nil, headerConfig: HeaderConfig? = nil, descriptionConfig: DescriptionConfig? = nil, customViewConfig: CustomViewConfig? = nil) -> MaterialCardConfig {
         
         // The wonderful world of structs
         var copy = self
@@ -67,6 +70,7 @@ public struct MaterialCardConfig {
         if let imageConfig = imageConfig {copy.imageConfig = imageConfig}
         if let headerConfig = headerConfig {copy.headerConfig = headerConfig}
         if let descriptionConfig = descriptionConfig {copy.descriptionConfig = descriptionConfig}
+        if let customViewConfig = customViewConfig {copy.customViewConfig = customViewConfig}
         
         return copy
     }
