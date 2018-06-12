@@ -46,13 +46,20 @@ open class CardAnimatorSourceVC: UIViewController {
     }
 }
 
-public protocol StatusBarHandler {
-    var animatorSource: CardAnimatorSourceVC! {get}
-    var sendingCard: MaterialCardView? {get}
+public protocol DetailPresentingVC: class {
+    var animatorSource: CardAnimatorSourceVC? {get set}
+    var sendingCard: MaterialCardView? {get set}
 }
 
-extension StatusBarHandler {
+extension DetailPresentingVC where Self: UIViewController {
     func setStatusBarHidden(isHidden: Bool) {
-        animatorSource.statusBarHidden = isHidden
+        animatorSource?.statusBarHidden = isHidden
+    }
+    
+    public func presentDetailVC(fromCard card: MaterialCardView, withContentView contentView: UIView, bottomFloatingView: UIView? = nil) {
+        self.sendingCard = card
+        let config = MaterialCardConfig(card: card)
+        let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: contentView, bottomFloatView: bottomFloatingView)
+        self.present(vc, animated: true, completion: nil)
     }
 }

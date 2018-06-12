@@ -2,6 +2,16 @@
 
 An iOS material design library (plus other useful UI/UX features) that utilizes the IBDesingable and IBInspectable tools to help visualize and easily manipulate your UI on iOS Storyboards.
 
+<div align="center">
+<img src="./Documention/Screenshots/ss1.png" width="80%"/> 
+</div>
+
+<div align="center">
+<img src="./Documention/Screenshots/ss2.png" width="20%"/> 
+<img src=<img src="./Documention/Screenshots/ss3.png" width="20%"/> 
+<img src="./Documention/Screenshots/ss4.png" width="20%"/> 
+<iframe src='https://gfycat.com/ifr/FlashyLeadingCattle' frameborder='0' scrolling='no' width="30%"></iframe>
+</div>
 
 ## Installing
 
@@ -31,13 +41,6 @@ Then, run the following command:
 
 ```bash
 $ pod install
-```
-
-#### While DKPrivate ...
-Add the following to the top of your Podfile
-```ruby
-source 'https://github.com/diamondkinetics/dkpods.git'
-source 'https://github.com/CocoaPods/Specs.git'
 ```
 
 ### Manually

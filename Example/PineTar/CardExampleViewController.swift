@@ -27,10 +27,10 @@
 import UIKit
 import PineTar
 
-class CardExampleViewController: UIViewController, StatusBarHandler {
+class CardExampleViewController: UIViewController, DetailPresentingVC {
     @IBOutlet weak var tableView: MaterialCardTableView!
+    var animatorSource: CardAnimatorSourceVC?
     var sendingCard: MaterialCardView?
-    var animatorSource: CardAnimatorSourceVC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +58,8 @@ class CardExampleViewController: UIViewController, StatusBarHandler {
     
     func setUp() {
         tableView.cardPressedAction = {card in
-            self.sendingCard = card
-            
-            // TODO: Wrap this inside of the pod
-            let config = MaterialCardConfig(card: card)
             let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-            let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: view)
-            self.present(vc, animated: true, completion: nil)
+            self.presentDetailVC(fromCard: card, withContentView: view)
         }
     }
 

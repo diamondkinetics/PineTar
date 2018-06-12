@@ -35,7 +35,7 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
     private var progressColorView: UIView!
     private var currIndex: Int = 0
     public var vc: UIViewController!
-    public var completion: ((Array<Any>) -> (Void))?
+    public var completion: ((Array<Any?>) -> (Void))?
     private var buttons: [UIButton]!
     
     public var steps: [Step]! {
@@ -46,8 +46,8 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
     
     public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        steps = [Step(skippable: false, text: "Example Step")]
-        setup()
+//        steps = [Step(skippable: false, text: "Example Step")]
+//        setup()
     }
 
     private func setup() {
@@ -196,7 +196,9 @@ public class MaterialStepperView: UIView, EnableStepDelegate {
             UIView.animate(withDuration: 0.2, animations: {
                 self.layoutIfNeeded()
             }, completion: {completed in
-                self.completion?([])
+                var values: [Any?] = []
+                for step in self.steps {values.append(step.value)}
+                self.completion?(values)
             })
         } else {
             let scrollToRect = CGRect.init(x: scrollView.contentOffset.x + self.frame.width, y: 0, width: self.frame.width, height: scrollView.frame.height)

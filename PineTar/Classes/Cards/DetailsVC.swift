@@ -221,7 +221,7 @@ extension DetailsVC: UIViewControllerTransitioningDelegate {
             self.source = source
             self.sendingCard = card
             return CardAnimatorFrom(from: card, offset: self.offset)
-        } else if let source = source as? StatusBarHandler, let card = source.sendingCard {
+        } else if let source = source as? DetailPresentingVC, let card = source.sendingCard {
             self.source = source.animatorSource
             self.sendingCard = card
             return CardAnimatorFrom(from: card, offset: self.offset )

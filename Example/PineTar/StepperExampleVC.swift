@@ -41,9 +41,8 @@ class StepperExampleVC: UIViewController {
         self.view.backgroundColor = ThemeManager.backgroundColor
         
         let step1 = TextStep(skippable: false, text: "Full Name")
-//        let step1 = ImageStep(skippable: false , text: "Profile Image")
         let step2 = ImageStep(skippable: false , text: "Profile Image")
-        let step3 = TextStep(skippable: true, text: "Some More Text")
+        let step3 = DateStep(skippable: true, text: "Birth Date") 
         let step4 = NumberStep(skippable: false, text: "A number is needed")
         
         stepperView.vc = self

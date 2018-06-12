@@ -39,7 +39,5 @@ private func addViewControllersToTabContainer() {
 }
 ```
 
-
-
 ## Example
 Check out ```TabVCExample``` for help

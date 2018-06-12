@@ -134,6 +134,7 @@ public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationContr
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
         if tempView.superview != nil {tempView.removeFromSuperview()}
+        self.value = image
         readyToContinue = true
         vc.dismiss(animated: true, completion: nil)
         imageView.update(forConfig: MaterialCardConfig(dividerConfig: DividerConfig(divideImage: image)))
@@ -161,6 +162,7 @@ public class TextStep: Step, UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
         readyToContinue = !(result.count == 0)
+        self.value = result
         return true
     }
 }
@@ -182,6 +184,57 @@ public class NumberStep: Step, UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let result = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? string
         readyToContinue = !(result.count == 0)
+        self.value = Int(result)
         return true
+    }
+}
+
+public class DateStep: Step {
+    private lazy var picker: UIDatePicker = UIDatePicker()
+    private lazy var label = UILabel()
+
+    private var vc: UIViewController?
+    
+    override func createView(vc: UIViewController) -> UIView {
+        self.vc = vc
+        
+        label.textColor = ThemeManager.onSurfaceColor
+        label.textAlignment = .center
+        label.font = ThemeManager.font.withSize(24)
+        updateLabel()
+        
+        return label
+    }
+    
+    private func updateLabel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = NSTimeZone.local
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        label.text = dateFormatter.string(from: self.value as? Date ?? Date())
+    }
+    
+    override func select() {
+        guard let vc = vc else { return }
+        picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.backgroundColor = UIColor.white
+        picker.date = self.value as? Date ?? Date()
+        picker.addTarget(self, action: #selector(dateChange(sender:)), for: .valueChanged)
+
+        vc.view.addSubview(picker)
+        picker.snp.makeConstraints{make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.height.equalTo(250)
+        }
+    }
+    
+    override func deselect() {
+        if picker.superview == nil { return }
+        picker.removeFromSuperview()
+    }
+    
+    @objc func dateChange(sender: UIDatePicker) {
+        self.value = sender.date
+        updateLabel()
     }
 }

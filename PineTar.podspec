@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PineTar'
-  s.version          = '0.1.14'
+  s.version          = '0.1.15'
   s.summary          = 'Helping developers get a grip on Material Design.'
 
 # This description is used to generate tags and improve search results.
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'Long long long long long long long long long long long long description!!!!!!!!!!!!! :) '
+  s.description      = 'PineTar is a UI, UX iOS library intended to aide developers in visualizing Material Design within Storyboards. It is intended to be a flexible development resource that allows developers to create clean user interfaces without interupted current development patterns.'
 
   s.homepage         = 'https://github.com/diamondkinetics/PineTar'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
