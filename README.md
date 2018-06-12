@@ -7,10 +7,9 @@ An iOS material design library (plus other useful UI/UX features) that utilizes 
 </div>
 
 <div align="center">
-<img src="./Documentation/Screenshots/ss2.png" width="20%"/> 
-<img src="./Documentation/Screenshots/ss3.png" width="20%"/> 
-<img src="./Documentation/Screenshots/ss4.png" width="20%"/> 
-<img src='https://gfycat.com/ifr/FlashyLeadingCattle' width="20%"></img>
+<img src="./Documentation/Screenshots/ss2.png" width="30%"/> 
+<img src="./Documentation/Screenshots/animation.gif" width="30%"/> 
+<img src="./Documentation/Screenshots/ss3.png" width="30%"/> 
 </div>
 
 ## Installing
