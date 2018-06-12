@@ -8,9 +8,9 @@ An iOS material design library (plus other useful UI/UX features) that utilizes 
 
 <div align="center">
 <img src="./Documentation/Screenshots/ss2.png" width="20%"/> 
-<img src=<img src="./Documentation/Screenshots/ss3.png" width="20%"/> 
+<img src="./Documentation/Screenshots/ss3.png" width="20%"/> 
 <img src="./Documentation/Screenshots/ss4.png" width="20%"/> 
-<iframe src='https://gfycat.com/ifr/FlashyLeadingCattle' frameborder='0' scrolling='no' width="30%"></iframe>
+<img src='https://gfycat.com/ifr/FlashyLeadingCattle' width="20%"></img>
 </div>
 
 ## Installing
