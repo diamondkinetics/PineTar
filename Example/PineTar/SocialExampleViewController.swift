@@ -31,7 +31,6 @@ import PineTar
 class SocialExampleViewController: UIViewController, DetailPresentingVC {
     @IBOutlet weak var tableView: MaterialCardTableView!
     var animatorSource: CardAnimatorSourceVC?
-    var sendingCard: MaterialCardView?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -86,6 +86,7 @@ public class MaterialCardView: UIView {
     
     var customView: UIView?
     var customViewHeight: CGFloat?
+    var customViewTopConstraint: CGFloat?
     
     var divide: UIView?
     var ogHeight: CGFloat? // TODO: Remove ogHeight ... use ogFrame
@@ -141,8 +142,8 @@ public class MaterialCardView: UIView {
         createSubheader()
         createDescription()
         
-        if let customView = customView, let height = self.customViewHeight {
-            createCustomView(customViewDescription: CustomViewConfig(customView: customView, height: height))
+        if let customView = customView, let height = self.customViewHeight, let top = self.customViewTopConstraint {
+            createCustomView(customViewDescription: CustomViewConfig(customView: customView, height: height, topConstraint: top))
         }
     }
     
@@ -347,11 +348,20 @@ public class MaterialCardView: UIView {
     
     func createCustomView(customViewDescription: CustomViewConfig) {
         let customView = customViewDescription.customView
+        
+        let archivedView = NSKeyedArchiver.archivedData(withRootObject: customView)
+        guard let viewDuplicate = NSKeyedUnarchiver.unarchiveObject(with: archivedView) as? UIView else { return }
+        
         self.customView?.removeFromSuperview()
-//        customView.frame = CGRect(x: 0, y: self.frame.height - customViewDescription.height, width: self.frame.width, height: customViewDescription.height)
-        self.addSubview(customView)
-        customView.snp.makeConstraints{make in
-            make.trailing.leading.bottom.equalToSuperview()
+        
+        self.addSubview(viewDuplicate)
+        self.customView = viewDuplicate
+        self.customViewHeight = customViewDescription.height
+        self.customViewTopConstraint = customViewDescription.topConstraint
+        
+        viewDuplicate.snp.makeConstraints{make in
+            make.trailing.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(customViewDescription.topConstraint)
             make.height.equalTo(customViewDescription.height)
         }
     }

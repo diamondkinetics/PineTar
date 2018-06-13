@@ -28,16 +28,19 @@ import Foundation
 public struct CustomViewConfig {
     var customView: UIView
     var height: CGFloat
+    var topConstraint: CGFloat
     
-    public init(customView: UIView, height: CGFloat) {
+    public init(customView: UIView, height: CGFloat, topConstraint: CGFloat) {
         self.customView = customView
         self.height = height
+        self.topConstraint = topConstraint
     }
     
-    public func copyWithUpdates(customView: UIView, height: CGFloat) -> CustomViewConfig {
+    public func copyWithUpdates(customView: UIView, height: CGFloat, topConstraint: CGFloat) -> CustomViewConfig {
         var copy = self        
         copy.customView = self.customView
         copy.height = self.height
+        copy.topConstraint = self.topConstraint
         
         return copy
     }

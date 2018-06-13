@@ -103,10 +103,11 @@ public class DetailsVC: UIViewController {
         scrollView.addSubview(scrollContentView)
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+
         scrollContentView.snp.makeConstraints{make in
             make.leading.trailing.bottom.top.equalToSuperview()
             make.width.equalTo(self.view.snp.width)
-            make.height.equalTo((sendingCard.ogHeight ?? sendingCard.frame.height) + height) // TODO: This will have to be calculated
+            make.height.equalTo((sendingCard.ogHeight ?? sendingCard.frame.height) + height)
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
@@ -217,14 +218,12 @@ public class DetailsVC: UIViewController {
 extension DetailsVC: UIViewControllerTransitioningDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
-        if let source = source as? CardAnimatorSourceVC, let card = source.sendingCard {
+        if let source = source as? CardAnimatorSourceVC {
             self.source = source
-            self.sendingCard = card
-            return CardAnimatorFrom(from: card, offset: self.offset)
-        } else if let source = source as? DetailPresentingVC, let card = source.sendingCard {
+            return CardAnimatorFrom(from: self.sendingCard, offset: self.offset)
+        } else if let source = source as? DetailPresentingVC {
             self.source = source.animatorSource
-            self.sendingCard = card
-            return CardAnimatorFrom(from: card, offset: self.offset )
+            return CardAnimatorFrom(from: self.sendingCard, offset: self.offset )
         }
         
         return nil

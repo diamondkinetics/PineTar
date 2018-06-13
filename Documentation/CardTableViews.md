@@ -34,14 +34,13 @@ tableView.cellHeight = 150
 ```
 
 ## DetailVC 
-You will notice in the example application that if you press on a ```MaterialCardView``` within my any ```CardTableView``` it will transistion into a view with the contents of the ```MaterialCardView``` as the header. Using PineTar, you can get that transistion for free, utilizing a ```DetailPresentingVC```.  ```DetailPresentingVC``` is a protocol made to extend your ```UIViewController``` that adds the following properties to your ```UIViewController```
+You will notice in the example application that if you press on a ```MaterialCardView``` within my any ```CardTableView``` it will transistion into a view with the contents of the ```MaterialCardView``` as the header. Using PineTar, you can get that transistion for free, utilizing a ```DetailPresentingVC```.  ```DetailPresentingVC``` is a protocol made to extend your ```UIViewController``` that adds the following property to your ```UIViewController```
 
 ```
 var animatorSource: CardAnimatorSourceVC?
-var sendingCard: MaterialCardView?
 ```
 
-These properties are used to provide information needed for the animation to ```DetailVC```. ```CardAnimatorSourceVC``` is the ```UIViewController``` whose status bar you would want to hide as you transition into the ```DetailVC```. In the example case, it is ```TabVCExample```, but in a non-tabbed example it would be the current ```UIViewController```. In the example app, ```TabExampleVC``` is a ```CardAnimatorSourceVC``` and as you initialize the ```UIViewControllers``` to load into your tab view, adding the below code hides ```TabExampleVC```'s status bar. Note that for the best animation results, you should add  ```View controller-based status bar appearance``` with the value ```YES``` to your Info.plist.
+Theis property is used to provide information needed for the animation to ```DetailVC```. ```CardAnimatorSourceVC``` is the ```UIViewController``` whose status bar you would want to hide as you transition into the ```DetailVC```. In the example case, it is ```TabVCExample```, but in a non-tabbed example it would be the current ```UIViewController```. In the example app, ```TabExampleVC``` is a ```CardAnimatorSourceVC``` and as you initialize the ```UIViewControllers``` to load into your tab view, adding the below code hides ```TabExampleVC```'s status bar. Note that for the best animation results, you should add  ```View controller-based status bar appearance``` with the value ```YES``` to your Info.plist.
 
 ```
 vc.animatorSource = self

@@ -56,7 +56,7 @@ public struct MaterialCardConfig {
         self.imageConfig = ImageConfig(card: card)
         self.headerConfig = HeaderConfig(card: card)
         self.descriptionConfig = DescriptionConfig(card: card)
-        if let customView = card.customView { self.customViewConfig = CustomViewConfig(customView: customView, height: card.customViewHeight!) }
+        if let customView = card.customView { self.customViewConfig = CustomViewConfig(customView: customView, height: card.customViewHeight!, topConstraint: card.customViewTopConstraint!) }
     }
 
     // TODO: If they wish to update by setting something to nil, this will not work
