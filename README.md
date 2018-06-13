@@ -75,5 +75,7 @@ PineTar is available under the MIT license. See the LICENSE file for more info.
 * Thanks to [SnapKit](https://github.com/SnapKit/SnapKit) for making my life easier
 
 <div align="center">
-<img src="./Documentation/Screenshots/dk_logo.png" width="30%"/> 
+<img src="./Documentation/Screenshots/dk_logo.png" width="20%"/> 
+ <p style="text-align:center;">Check out <a href="https://diamondkinetics.com/about/careers/">careers at Diamond Kinetics</a> </p>
 </div>
+
