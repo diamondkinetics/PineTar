@@ -45,10 +45,7 @@ class CardExampleViewController: UIViewController, DetailPresentingVC {
             let title = titles[i]
             let image = images[i]
             
-            let view = UIView()
-            view.backgroundColor = UIColor.blue
-            
-            let config = baseConfig.copyWithUpdates(dividerConfig: DividerConfig.init(divideImage: image), headerConfig: HeaderConfig(header: title), customViewConfig: CustomViewConfig.init(customView: view, height: 50))
+            let config = baseConfig.copyWithUpdates(dividerConfig: DividerConfig.init(divideImage: image), headerConfig: HeaderConfig(header: title))
             data.append(config)
         }
         

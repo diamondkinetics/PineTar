@@ -348,8 +348,12 @@ public class MaterialCardView: UIView {
     func createCustomView(customViewDescription: CustomViewConfig) {
         let customView = customViewDescription.customView
         self.customView?.removeFromSuperview()
-        customView.frame = CGRect(x: 0, y: self.frame.height - customViewDescription.height, width: self.frame.width, height: customViewDescription.height)
+//        customView.frame = CGRect(x: 0, y: self.frame.height - customViewDescription.height, width: self.frame.width, height: customViewDescription.height)
         self.addSubview(customView)
+        customView.snp.makeConstraints{make in
+            make.trailing.leading.bottom.equalToSuperview()
+            make.height.equalTo(customViewDescription.height)
+        }
     }
     
     private func align(make: ConstraintMaker, alignment: Int, horzOffset: Int, vertOffset: Int) {
