@@ -3,12 +3,12 @@
 Defining a Theme makes this library's UI components conform to colors and fonts defined by you. These themes are meant to be an implementation of [Material Design's color system](https://material.io/design/color/the-color-system.html).
 
 ## Simple Theme
-The first option is to use a ```SimpleTheme```. Simply create a ```struct``` that conforms to the ```SimpleTheme``` protocol XCode will prompt you to define the following
+The first option is to use a ```SimpleTheme```. Simply create a ```struct``` that conforms to the ```SimpleTheme``` protocol and XCode will prompt you to define the following
 * ```primaryColor: UIColor``` - The color used for almost every component
 * ```backgroundColor: UIColor``` - The background color throughout the application
-* ```onPrimaryColor: UIColor``` - on primary color is a color used for text or symbols that appear somewhere with a primary color background. It should be readable against your primary color
-* ```onBackgroundColor: UIColor``` - see above, just think background color
-* ```font: UIFont``` - what font will be used in all of our UI Components
+* ```onPrimaryColor: UIColor``` - The color used for text or symbols that appear somewhere with a primary color backgroun. It should be readable against your primary color
+* ```onBackgroundColor: UIColor``` - The color used for text or symbols that appear somewhere with a backgroundColor background
+* ```font: UIFont``` - The font that will be used in all library UI Components
 
 ## Theme
 If you want a little bit more control over colors, but still want us to do the work you can conform to a ```Theme``` instead of a  ```SimpleTheme```. Now you are forced to define 
