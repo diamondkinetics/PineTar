@@ -86,7 +86,7 @@ PineTar is available under the MIT license. See the LICENSE file for more info.
 * Thanks to [SnapKit](https://github.com/SnapKit/SnapKit) for making my life easier
 
 ## Why PineTar?
-This project is was produced by Diamond Kinetics, a baseball sports tech company. If you're spending a good amount of time in this repo, we probably want to hire you! Check out careers [here!](https://diamondkinetics.com/about/careers/)
+This project is maintained by Diamond Kinetics, a baseball sports tech company. If you're spending a good amount of time in this repo, we probably want to hire you! Check out careers [here.](https://diamondkinetics.com/about/careers/)
 
 <div align="center">
 <img src="./Documentation/Screenshots/dk_logo.png" width="20%"/> 
