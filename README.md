@@ -36,6 +36,17 @@ pod 'PineTar'
 end
 ```
 
+Because of a bug in Cocoapods, sometimes the views fail to render in the storyboards. By adding the code below to the end of your Podfile, you can resolve this issue.
+```
+# Workaround for Cocoapods v.1.5 issue #7606
+post_install do |installer|
+    installer.pods_project.build_configurations.each do |config|
+        config.build_settings.delete('CODE_SIGNING_ALLOWED')
+        config.build_settings.delete('CODE_SIGNING_REQUIRED')
+    end
+end
+```
+
 Then, run the following command:
 
 ```bash
@@ -74,8 +85,10 @@ PineTar is available under the MIT license. See the LICENSE file for more info.
 
 * Thanks to [SnapKit](https://github.com/SnapKit/SnapKit) for making my life easier
 
+## Why PineTar?
+This project is maintained by Diamond Kinetics, a baseball sports tech company. If you're spending a good amount of time in this repo, we probably want to hire you! Check out careers [here.](https://diamondkinetics.com/about/careers/)
+
 <div align="center">
 <img src="./Documentation/Screenshots/dk_logo.png" width="20%"/> 
- <p style="text-align:center;">Check out <a href="https://diamondkinetics.com/about/careers/">careers at Diamond Kinetics</a> </p>
 </div>
 
