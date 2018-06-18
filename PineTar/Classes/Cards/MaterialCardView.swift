@@ -84,9 +84,11 @@ public class MaterialCardView: UIView {
     @IBInspectable var contentDescriptionSize: CGFloat = -1 //12
     @IBInspectable var contentDescriptionColor: UIColor? = nil //UIColor.black
     
+    var customViewCreator: (() -> UIView)?
     var customView: UIView?
     var customViewHeight: CGFloat?
     var customViewTopConstraint: CGFloat?
+    private var customViewOffset: CGFloat = 0
     
     var divide: UIView?
     var ogHeight: CGFloat? // TODO: Remove ogHeight ... use ogFrame
@@ -142,8 +144,8 @@ public class MaterialCardView: UIView {
         createSubheader()
         createDescription()
         
-        if let customView = customView, let height = self.customViewHeight, let top = self.customViewTopConstraint {
-            createCustomView(customViewDescription: CustomViewConfig(customView: customView, height: height, topConstraint: top))
+        if let customViewCreator = customViewCreator, let height = self.customViewHeight, let top = self.customViewTopConstraint {
+            createCustomView(customViewDescription: CustomViewConfig(customView: customViewCreator, height: height, topConstraint: top))
         }
     }
     
@@ -219,12 +221,15 @@ public class MaterialCardView: UIView {
             createHeader()
         } else {
             headerLabel?.text = self.header
+            headerLabel?.textColor = self.headerColor
+
         }
         
         if subheaderLabel == nil {
             createSubheader()
         } else {
             subheaderLabel?.text = self.subheader
+            subheaderLabel?.textColor = self.subheaderColor
         }
     }
     
@@ -347,23 +352,23 @@ public class MaterialCardView: UIView {
     }
     
     func createCustomView(customViewDescription: CustomViewConfig) {
-        let customView = customViewDescription.customView
-        
-        let archivedView = NSKeyedArchiver.archivedData(withRootObject: customView)
-        guard let viewDuplicate = NSKeyedUnarchiver.unarchiveObject(with: archivedView) as? UIView else { return }
-        
+        let customBuilder = customViewDescription.customView
+        let customView = customBuilder()
+            
         self.customView?.removeFromSuperview()
         
-        self.addSubview(viewDuplicate)
-        self.customView = viewDuplicate
+        self.addSubview(customView)
         self.customViewHeight = customViewDescription.height
         self.customViewTopConstraint = customViewDescription.topConstraint
         
-        viewDuplicate.snp.makeConstraints{make in
+        customView.snp.makeConstraints{make in
             make.trailing.leading.equalToSuperview()
             make.top.equalToSuperview().offset(customViewDescription.topConstraint)
             make.height.equalTo(customViewDescription.height)
         }
+        
+        self.customView = customView
+        self.customViewCreator = customBuilder
     }
     
     private func align(make: ConstraintMaker, alignment: Int, horzOffset: Int, vertOffset: Int) {
@@ -422,6 +427,7 @@ public class MaterialCardView: UIView {
     func squeeze(byOffset offset: Int) {
         headerHorzOffset = headerHorzOffset + (headerHorzOffset < 0 ? -1 : 1) * offset
         imageHorzOffset = imageHorzOffset + (imageHorzOffset < 0 ? -1 : 1) * offset
+        customViewOffset = customViewOffset + CGFloat(offset)
     }
     
     func updateConstraintsForSqueeze() {
@@ -435,6 +441,14 @@ public class MaterialCardView: UIView {
         headerLabel?.snp.removeConstraints()
         headerLabel?.snp.makeConstraints{(make) in
             self.align(make: make, alignment: self.headerAlignment, horzOffset: self.headerHorzOffset, vertOffset: self.headerVertOffset)
+        }
+        
+        customView?.snp.removeConstraints()
+        customView?.snp.makeConstraints{make in
+            make.top.equalTo(customViewTopConstraint!)
+            make.leading.equalTo(customViewOffset)
+            make.trailing.equalTo(-customViewOffset)
+            make.height.equalTo(customViewHeight!)
         }
     }
     

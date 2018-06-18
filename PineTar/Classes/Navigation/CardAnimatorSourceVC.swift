@@ -55,9 +55,10 @@ extension DetailPresentingVC where Self: UIViewController {
         animatorSource?.statusBarHidden = isHidden
     }
     
-    public func presentDetailVC(fromCard card: MaterialCardView, withContentView contentView: UIView, bottomFloatingView: UIView? = nil) {
+    public func presentDetailVC(fromCard card: MaterialCardView, withContentView contentView: UIView, bottomFloatingView: UIView? = nil, useCurrentOffset: Bool = false) {
         let config = MaterialCardConfig(card: card)
         let vc = DetailsVC(sendingCard: card, cardConfig: config, contentView: contentView, bottomFloatView: bottomFloatingView)
+        vc.useCurrentOffset = useCurrentOffset
         self.present(vc, animated: true, completion: nil)
     }
 }

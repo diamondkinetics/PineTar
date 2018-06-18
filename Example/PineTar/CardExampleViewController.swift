@@ -43,8 +43,14 @@ class CardExampleViewController: UIViewController, DetailPresentingVC {
         for i in 0..<titles.count {
             let title = titles[i]
             let image = images[i]
-        
-            let config = baseConfig.copyWithUpdates(dividerConfig: DividerConfig.init(divideImage: image), headerConfig: HeaderConfig(header: title))
+            
+//            let customViewBuilder: (() -> UIView) = {
+//                let view = UIView()
+//                view.backgroundColor = UIColor.blue
+//                return view
+//            }
+            
+            let config = baseConfig.copyWithUpdates(dividerConfig: DividerConfig.init(divideImage: image), headerConfig: HeaderConfig(header: title))//, customViewConfig: CustomViewConfig(customView: customViewBuilder, height: 50, topConstraint: 90))
             data.append(config)
         }
         
@@ -58,7 +64,7 @@ class CardExampleViewController: UIViewController, DetailPresentingVC {
     
     func setUp() {
         tableView.cardPressedAction = {card in
-            let view = UINib.init(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+            let view = UINib(nibName: "DetailContent", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
             self.presentDetailVC(fromCard: card, withContentView: view)
         }
     }

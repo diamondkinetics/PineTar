@@ -138,6 +138,9 @@
                                     <constraint firstAttribute="width" constant="60" id="Vsm-m7-4a2"/>
                                     <constraint firstAttribute="height" constant="60" id="otU-SN-AIf"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hasShadow" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="56C-tf-7Ks" kind="show" id="Fze-Q8-YEH"/>
                                 </connections>
