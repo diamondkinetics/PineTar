@@ -104,6 +104,7 @@ extension MaterialCardTableView: UITableViewDelegate, UITableViewDataSource {
         }
         
         card = cards[0]
+        card.tag = indexPath.row
         card.cardPressedAction = self.cardPressedAction
         let config = data[indexPath.row]
         card.update(forConfig: config)
