@@ -371,6 +371,18 @@ public class MaterialCardView: UIView {
         self.customViewCreator = customBuilder
     }
     
+    public func updateCustomViewHeight(height: CGFloat) {
+        self.customViewHeight = height
+        guard let topConstraint = self.customViewTopConstraint, let height = self.customViewHeight else { return }
+        
+        customView?.snp.removeConstraints()
+        customView?.snp.makeConstraints{make in
+            make.trailing.leading.equalToSuperview()
+            make.top.equalToSuperview().offset(topConstraint)
+            make.height.equalTo(height)
+        }
+    }
+    
     private func align(make: ConstraintMaker, alignment: Int, horzOffset: Int, vertOffset: Int) {
         guard let safeAlignment = ImageAlignment(rawValue: alignment) else {
             make.top.equalToSuperview().offset(vertOffset)
