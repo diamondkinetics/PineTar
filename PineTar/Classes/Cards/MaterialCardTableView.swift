@@ -30,9 +30,13 @@ import UIKit
 // NOTE: Two courses of action if they want to have a more control, create own delegate or override specific functions
 public class MaterialCardTableView: UITableView {
     public var cardPressedAction: ((MaterialCardView) -> Void)?
-    public var data: [MaterialCardConfig]!
     public var cellHeight: CGFloat = 300
     public var cellReuseIdentifier: String = "cell"
+    private var expandedCellHeight: CGFloat?
+    private var expandedIndexPath: IndexPath?
+    public var data: [MaterialCardConfig]! {
+        didSet { self.reloadData() }
+    }
     
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -61,7 +65,21 @@ public class MaterialCardTableView: UITableView {
         
         card = cards[0]
         
-        return MaterialCardConfig.init(card: card)
+        return MaterialCardConfig(card: card)
+    }
+    
+    public func expand(indexPath: IndexPath, toHeight: CGFloat) {
+        self.expandedIndexPath = indexPath
+        self.expandedCellHeight = toHeight
+        self.beginUpdates()
+        self.endUpdates()
+    }
+    
+    public func shrinkExpanded() {
+        self.expandedIndexPath = nil
+        self.expandedCellHeight = 0
+        self.beginUpdates()
+        self.endUpdates()
     }
 }
 
@@ -94,6 +112,10 @@ extension MaterialCardTableView: UITableViewDelegate, UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let expandedIndexPath = self.expandedIndexPath, let expandHeight = self.expandedCellHeight, expandedIndexPath == indexPath {
+            return expandHeight
+        }
+        
         return cellHeight
     }
 }
