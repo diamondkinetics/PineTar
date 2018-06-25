@@ -119,4 +119,12 @@ extension MaterialCardTableView: UITableViewDelegate, UITableViewDataSource {
         
         return cellHeight
     }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if let expandedIndexPath = self.expandedIndexPath, let expandHeight = self.expandedCellHeight, expandedIndexPath == indexPath {
+            return expandHeight
+        }
+        
+        return cellHeight
+    }
 }
