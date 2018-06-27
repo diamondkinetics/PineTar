@@ -111,6 +111,7 @@ public class DetailsVC: UIViewController {
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
+        card.tag = sendingCard.tag
         card.pressAnimationEnabled = false
         card.update(forConfig: cardConfig)
         if let offset = offset {
@@ -141,16 +142,9 @@ public class DetailsVC: UIViewController {
             make.top.leading.trailing.bottom.equalToSuperview()
         }
         
-        let tableView = contentView as! UITableView
-        containerView.addSubview(tableView)
-        tableView.snp.makeConstraints{make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalToSuperview().offset(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
-            make.bottom.equalToSuperview().offset(-(self.bottomFloatView?.frame.height ?? 0))
-        }
-        
         let card = MaterialCardView(frame: CGRect.zero)
         card.pressAnimationEnabled = false
+        card.tag = sendingCard.tag
         card.update(forConfig: cardConfig)
         
         if let offset = offset {
@@ -165,6 +159,17 @@ public class DetailsVC: UIViewController {
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
         }
+        
+        let tableView = contentView as! UITableView
+        containerView.addSubview(tableView)
+        tableView.snp.makeConstraints{make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(card.snp.bottom)
+            //            make.top.equalToSuperview().offset(self.sendingCard.ogHeight ?? self.sendingCard.frame.height)
+            make.bottom.equalToSuperview().offset(-(self.bottomFloatView?.frame.height ?? 0))
+        }
+        
+        containerView.bringSubview(toFront: card)
     }
     
     private func addFloatView() {

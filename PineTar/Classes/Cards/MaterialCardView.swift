@@ -377,8 +377,9 @@ public class MaterialCardView: UIView {
         
         customView?.snp.removeConstraints()
         customView?.snp.makeConstraints{make in
-            make.trailing.leading.equalToSuperview()
-            make.top.equalToSuperview().offset(topConstraint)
+            make.top.equalTo(topConstraint)
+            make.leading.equalTo(customViewOffset)
+            make.trailing.equalTo(-customViewOffset)
             make.height.equalTo(height)
         }
     }
