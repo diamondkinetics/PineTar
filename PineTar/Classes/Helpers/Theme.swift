@@ -90,6 +90,8 @@ public class ThemeManager {
     
     public static var useSecondaryColorForButtons: Bool = false { didSet { if secondaryColor == nil {useSecondaryColorForButtons = false } } }
     
+    public static var shadowOpacity: Float = 0.5
+    
     public static func setTheme(theme: Theme) {
         self.theme = theme
     }

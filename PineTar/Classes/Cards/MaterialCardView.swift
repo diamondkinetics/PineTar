@@ -65,6 +65,8 @@ public class MaterialCardView: UIView {
     @IBInspectable var imageStyle: Int = -1
     @IBInspectable var imageVertOffset: Int = -1 //10
     @IBInspectable var imageHorzOffset: Int = -1 //10
+    @IBInspectable var imageOutlineWidth: Int = -1
+    @IBInspectable var imageOutlineColor: UIColor? = nil
     
     // Header Traits
     @IBInspectable var header: String? = nil
@@ -197,11 +199,15 @@ public class MaterialCardView: UIView {
         if let imageAlignment = imageConfig.imageAlignment {self.imageAlignment = imageAlignment}
         if let imageVertOffset = imageConfig.imageVertOffset {self.imageVertOffset = imageVertOffset}
         if let imageHorzOffset = imageConfig.imageHorzOffset {self.imageHorzOffset = imageHorzOffset}
+        if let imageOutlineWidth = imageConfig.imageOutlineWidth {self.imageOutlineWidth = imageOutlineWidth}
+        if let imageOutlineColor = imageConfig.imageOutlineColor {self.imageOutlineColor = imageOutlineColor}
         
         if imageView == nil {
             createImage()
         } else {
             imageView?.image = self.image
+            imageView?.layer.borderWidth = CGFloat(self.imageOutlineWidth)
+            imageView?.layer.borderColor = self.imageOutlineColor?.cgColor
         }
     }
     
@@ -291,6 +297,8 @@ public class MaterialCardView: UIView {
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
+        imageView.layer.borderWidth = CGFloat(self.imageOutlineWidth)
+        imageView.layer.borderColor = self.imageOutlineColor?.cgColor
         styleImage(imageView: imageView)
         self.addSubview(imageView)
         imageView.snp.makeConstraints{(make) in
@@ -506,6 +514,8 @@ public class MaterialCardView: UIView {
         imageStyle = imageStyle == -1 ? 0 : imageStyle
         imageVertOffset = imageVertOffset == -1 ? 10 : imageVertOffset
         imageHorzOffset = imageHorzOffset == -1 ? 10 : imageHorzOffset
+        imageOutlineColor = imageOutlineColor == nil ? UIColor.white : imageOutlineColor
+        imageOutlineWidth = imageOutlineWidth == -1 ? 0 : imageOutlineWidth
         
         headerColor = headerColor == nil ? UIColor.black : headerColor
         headerSize = headerSize == -1 ? 24 : headerSize

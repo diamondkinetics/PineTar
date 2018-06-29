@@ -35,14 +35,18 @@ public struct ImageConfig {
     var imageStyle: Int?
     var imageVertOffset: Int?
     var imageHorzOffset: Int?
+    var imageOutlineColor: UIColor?
+    var imageOutlineWidth: Int?
     
-    public init(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil) {
+    public init(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) {
         self.image = image
         self.imageHeight = imageHeight
         self.imageAlignment = imageAlignment
         self.imageStyle = imageStyle
         self.imageVertOffset = imageVertOffset
         self.imageHorzOffset = imageHorzOffset
+        self.imageOutlineWidth = imageOutlineWidth
+        self.imageOutlineColor = imageOutlineColor
     }
     
     public init(card: MaterialCardView) {
@@ -53,9 +57,11 @@ public struct ImageConfig {
         self.imageStyle = card.imageStyle
         self.imageVertOffset = card.imageVertOffset
         self.imageHorzOffset = card.imageHorzOffset
+        self.imageOutlineWidth = card.imageOutlineWidth
+        self.imageOutlineColor = card.imageOutlineColor
     }
     
-    public func copyWithUpdates(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil) -> ImageConfig {
+    public func copyWithUpdates(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) -> ImageConfig {
         
         var copy = self
         
@@ -66,6 +72,8 @@ public struct ImageConfig {
         if let imageStyle = imageStyle {copy.imageStyle = imageStyle}
         if let imageVertOffset = imageVertOffset {copy.imageVertOffset = imageVertOffset}
         if let imageHorzOffset = imageHorzOffset {copy.imageHorzOffset = imageHorzOffset}
+        if let imageOutlineWidth = imageOutlineWidth {copy.imageOutlineWidth = imageOutlineWidth}
+        if let imageOutlineColor = imageOutlineColor {copy.imageOutlineColor = imageOutlineColor}
         
         return copy
     }
