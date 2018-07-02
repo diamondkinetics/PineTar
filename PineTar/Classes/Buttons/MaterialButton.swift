@@ -76,7 +76,7 @@ public class MaterialButton: UIButton {
         if !hasShadow { return }
         UIView.animate(withDuration: 0.5, animations: {
             self.layer.shadowOffset = CGSize(width: 0, height: 4)
-            self.layer.shadowOpacity = 0.5
+            self.layer.shadowOpacity = ThemeManager.shadowOpacity
             self.layer.shadowColor = UIColor.black.cgColor
         })
     }
