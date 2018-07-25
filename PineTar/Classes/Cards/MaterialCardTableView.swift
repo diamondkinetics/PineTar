@@ -34,9 +34,7 @@ public class MaterialCardTableView: UITableView {
     public var cellReuseIdentifier: String = "cell"
     private var expandedCellHeight: CGFloat?
     private var expandedIndexPath: IndexPath?
-    public var data: [MaterialCardConfig]! {
-        didSet { self.reloadData() }
-    }
+    public var data: [MaterialCardConfig]!
     
     override public func awakeFromNib() {
         super.awakeFromNib()

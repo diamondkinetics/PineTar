@@ -95,7 +95,7 @@ public class MaterialCardView: UIView {
     var divide: UIView?
     var ogHeight: CGFloat? // TODO: Remove ogHeight ... use ogFrame
     var ogFrame: CGRect?
-    private var headerLabel: UILabel?
+    public var headerLabel: UILabel?
     private var subheaderLabel: UILabel?
     private var descriptionTV: UITextView?
     private var imageView: UIImageView?
