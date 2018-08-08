@@ -27,11 +27,12 @@
 import Foundation
 import UIKit
 
-public class DetailsVC: UIViewController {
-    private var sendingCard: MaterialCardView
-    public var cardConfig: MaterialCardConfig
+open class DetailsVC: UIViewController {
+    public var sendingCard: MaterialCardView!
+    public var cardConfig: MaterialCardConfig!
+    public var backButton: UIButton?
     
-    private var contentView: UIView
+    public var contentView: UIView!
     private var source: CardAnimatorSourceVC!
     private var offset: Int?
     private var bottomFloatView: UIView?
@@ -39,6 +40,7 @@ public class DetailsVC: UIViewController {
     public var statusBarHidden = false {
         didSet {
             UIView.animate(withDuration: 0.5, animations: {
+                print("Made it here")
                 self.setNeedsStatusBarAppearanceUpdate()
             }, completion: {complete in
                 self.source.statusBarHidden = true
@@ -56,6 +58,10 @@ public class DetailsVC: UIViewController {
         }
     }
     
+    public init() {
+        super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
+    }
+    
     public init(sendingCard: MaterialCardView, cardConfig: MaterialCardConfig, contentView: UIView, bottomFloatView: UIView? = nil) {
         self.sendingCard = sendingCard
         self.cardConfig = cardConfig
@@ -66,15 +72,16 @@ public class DetailsVC: UIViewController {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        //        fatalError("init(coder:) has not been implemented")
+        super.init(nibName: nil, bundle: Bundle.init(for: type(of: self)))
     }
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         transitioningDelegate = self
         setup()
     }
     
-    private func setup() {
+    public func setup() {
         view.backgroundColor = ThemeManager.backgroundColor
         
         if contentView is UITableView {
@@ -103,7 +110,7 @@ public class DetailsVC: UIViewController {
         scrollView.addSubview(scrollContentView)
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-
+        
         scrollContentView.snp.makeConstraints{make in
             make.leading.trailing.bottom.top.equalToSuperview()
             make.width.equalTo(self.view.snp.width)
@@ -135,11 +142,24 @@ public class DetailsVC: UIViewController {
         }
     }
     
+    public var secretFlag: Bool = false
+    
     private func setupWithTableView() {
         let containerView = UIView()
         view.addSubview(containerView)
         containerView.snp.makeConstraints{make in
-            make.top.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(secretFlag ? topLayoutGuide.snp.bottom : containerView.superview!.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        if secretFlag {
+            let topView = UIView()
+            topView.backgroundColor = self.cardConfig.dividerConfig?.divideColor
+            self.view.addSubview(topView)
+            topView.snp.makeConstraints{make in
+                make.top.leading.trailing.equalToSuperview()
+                make.bottom.equalTo(containerView.snp.top)
+            }
         }
         
         let card = MaterialCardView(frame: CGRect.zero)
@@ -198,6 +218,8 @@ public class DetailsVC: UIViewController {
             make.top.equalToSuperview().offset(5)
             make.trailing.equalToSuperview().offset(-10)
         }
+        
+        self.backButton = backButton
     }
     
     @IBAction func backButtonPressed(sender: UIButton) {
@@ -207,15 +229,15 @@ public class DetailsVC: UIViewController {
         })
     }
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    public override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+    open override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
         return .slide
     }
     
-    public override var prefersStatusBarHidden: Bool {
+    open override var prefersStatusBarHidden: Bool {
         return statusBarHidden
     }
 }
