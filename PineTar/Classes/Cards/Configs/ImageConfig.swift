@@ -29,6 +29,7 @@ import UIKit
 
 public struct ImageConfig {
     var image: UIImage?
+    var populateImageBlock: ((UIImageView) -> Void)?
     var imageHeight: CGFloat?
     var imageWidth: CGFloat?
     var imageAlignment: Int?
@@ -38,8 +39,9 @@ public struct ImageConfig {
     var imageOutlineColor: UIColor?
     var imageOutlineWidth: Int?
     
-    public init(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) {
+    public init(image: UIImage? = nil, populateImageBlock: ((UIImageView) -> Void)? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) {
         self.image = image
+        self.populateImageBlock = populateImageBlock
         self.imageHeight = imageHeight
         self.imageAlignment = imageAlignment
         self.imageStyle = imageStyle
@@ -51,6 +53,7 @@ public struct ImageConfig {
     
     public init(card: MaterialCardView) {
         self.image = card.image
+        self.populateImageBlock = card.populateImageBlock
         self.imageHeight = card.imageHeight
         self.imageWidth = card.imageWidth
         self.imageAlignment = card.imageAlignment
@@ -61,11 +64,12 @@ public struct ImageConfig {
         self.imageOutlineColor = card.imageOutlineColor
     }
     
-    public func copyWithUpdates(image: UIImage? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) -> ImageConfig {
+    public func copyWithUpdates(image: UIImage? = nil, populateImageBlock: ((UIImageView) -> Void)? = nil, imageHeight: CGFloat? = nil, imageWidth: CGFloat? = nil, imageAlignment: Int? = nil, imageStyle: Int? = nil, imageVertOffset: Int? = nil, imageHorzOffset: Int? = nil, imageOutlineColor: UIColor? = nil, imageOutlineWidth: Int? = nil) -> ImageConfig {
         
         var copy = self
         
         if let image = image {copy.image = image}
+        if let populateImageBlock = populateImageBlock {copy.populateImageBlock = populateImageBlock}
         if let imageHeight = imageHeight {copy.imageHeight = imageHeight}
         if let imageWidth = imageWidth {copy.imageWidth = imageWidth}
         if let imageAlignment = imageAlignment {copy.imageAlignment = imageAlignment}

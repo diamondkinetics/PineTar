@@ -59,6 +59,7 @@ public class MaterialCardView: UIView {
     
     // Image Traits
     @IBInspectable var image: UIImage? = nil
+    var populateImageBlock: ((UIImageView) -> Void)?
     @IBInspectable var imageHeight: CGFloat = -1
     @IBInspectable var imageWidth: CGFloat = -1
     @IBInspectable var imageAlignment: Int = -1
@@ -291,12 +292,13 @@ public class MaterialCardView: UIView {
     }
     
     private func createImage() {
-        guard let image = image else {return}
+        if image == nil && populateImageBlock == nil {return}
         
         let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.image = image
+        populateImageBlock?(imageView)
         imageView.layer.borderWidth = CGFloat(self.imageOutlineWidth)
         imageView.layer.borderColor = self.imageOutlineColor?.cgColor
         styleImage(imageView: imageView)
