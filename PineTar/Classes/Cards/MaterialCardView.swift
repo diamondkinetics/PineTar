@@ -194,6 +194,7 @@ public class MaterialCardView: UIView {
     
     private func updateImage(imageConfig: ImageConfig) {
         if let image = imageConfig.image {self.image = image}
+        if let populateImageBlock = imageConfig.populateImageBlock {self.populateImageBlock = populateImageBlock}
         if let imageStyle = imageConfig.imageStyle {self.imageStyle = imageStyle}
         if let imageHeight = imageConfig.imageHeight {self.imageHeight = imageHeight}
         if let imageWidth = imageConfig.imageWidth {self.imageWidth = imageWidth}
@@ -209,6 +210,7 @@ public class MaterialCardView: UIView {
             imageView?.image = self.image
             imageView?.layer.borderWidth = CGFloat(self.imageOutlineWidth)
             imageView?.layer.borderColor = self.imageOutlineColor?.cgColor
+            populateImageBlock?(imageView!)
         }
     }
     
