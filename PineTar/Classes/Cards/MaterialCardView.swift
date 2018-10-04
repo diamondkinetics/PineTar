@@ -153,7 +153,7 @@ public class MaterialCardView: UIView {
     }
     
     // MARK: Updates
-    func update(forConfig config: MaterialCardConfig) {
+    public func update(forConfig config: MaterialCardConfig) {
         // TODO: Complete this - Right now only updating content
         self.backgroundColor = config.backgroundColor
         
