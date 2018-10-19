@@ -132,7 +132,7 @@ public class ImageStep: Step, UIImagePickerControllerDelegate, UINavigationContr
     }
     
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
+        guard let image = info[UIImagePickerController.InfoKey.originalImage.rawValue] as? UIImage else {return}
         if tempView.superview != nil {tempView.removeFromSuperview()}
         self.value = image
         readyToContinue = true

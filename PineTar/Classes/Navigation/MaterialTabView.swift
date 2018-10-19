@@ -109,8 +109,8 @@ public class MaterialTabView: UIView  {
         
         for i in 0..<options!.count {
             let option = options![i]
-            let tab = UIButton(type: UIButtonType.system)
-            tab.addTarget(self, action: #selector(didPressOption(sender:)), for: UIControlEvents.touchUpInside)
+            let tab = UIButton(type: UIButton.ButtonType.system)
+            tab.addTarget(self, action: #selector(didPressOption(sender:)), for: UIControl.Event.touchUpInside)
             let color = i == selectedIndex ? ThemeManager.onPrimaryColor : UIColor.lightGray
             tab.setTitleColor(color, for: .normal)
             tab.titleLabel?.font =  ThemeManager.font.withSize(16)

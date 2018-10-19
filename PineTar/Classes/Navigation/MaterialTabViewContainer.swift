@@ -29,7 +29,7 @@ import UIKit
 
 public class MaterialTabViewController: UIViewController {
     func addViewController(vc: UIViewController) {
-        addChildViewController(vc)
+        addChild(vc)
     }
 }
 
@@ -39,7 +39,7 @@ public protocol MaterialTabViewDelegate {
 
 extension MaterialTabViewDelegate {
     func addViewController(vc: UIViewController) {
-        viewController.addChildViewController(vc)
+        viewController.addChild(vc)
     }
 }
 
@@ -137,7 +137,7 @@ public class MaterialTabViewContainer: UIView {
         }
 
         viewControllers.append(vc)
-        vc.didMove(toParentViewController: delegate.viewController)
+        vc.didMove(toParent: delegate.viewController)
         createContentViewConstraints()
     }
 }

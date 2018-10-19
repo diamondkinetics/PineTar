@@ -50,7 +50,7 @@ public extension UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.barTintColor = ThemeManager.primaryColor
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedStringKey.font: ThemeManager.font.withSize(22), NSAttributedStringKey.foregroundColor: titleColor ?? ThemeManager.onPrimaryColor]
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: ThemeManager.font.withSize(22), NSAttributedString.Key.foregroundColor: titleColor ?? ThemeManager.onPrimaryColor]
     }
     
     public func removeDefaultNavBarShadow() {

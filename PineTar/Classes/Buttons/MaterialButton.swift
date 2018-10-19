@@ -63,9 +63,9 @@ public class MaterialButton: UIButton {
             addShadow()
         }
         
-        self.addTarget(self, action: #selector(pressDown), for: UIControlEvents.touchDown)
-        self.addTarget(self, action: #selector(pressUp), for: UIControlEvents.touchCancel)
-        self.addTarget(self, action: #selector(pressUp), for: UIControlEvents.touchUpInside)
+        self.addTarget(self, action: #selector(pressDown), for: UIControl.Event.touchDown)
+        self.addTarget(self, action: #selector(pressUp), for: UIControl.Event.touchCancel)
+        self.addTarget(self, action: #selector(pressUp), for: UIControl.Event.touchUpInside)
     }
     
     func setText(text: String) {

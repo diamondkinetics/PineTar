@@ -189,7 +189,7 @@ open class DetailsVC: UIViewController {
             make.bottom.equalToSuperview().offset(-(self.bottomFloatView?.frame.height ?? 0))
         }
         
-        containerView.bringSubview(toFront: card)
+        containerView.bringSubviewToFront(card)
     }
     
     private func addFloatView() {
@@ -210,8 +210,8 @@ open class DetailsVC: UIViewController {
         backButton.layer.cornerRadius = 20
         
         let image = UIImage.init(named: "xIcon", in: Bundle(for: type(of: self)), compatibleWith: nil)
-        backButton.setImage(image, for: UIControlState.normal)
-        backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: UIControlEvents.touchUpInside)
+        backButton.setImage(image, for: UIControl.State.normal)
+        backButton.addTarget(self, action: #selector(backButtonPressed(sender:)), for: UIControl.Event.touchUpInside)
         self.view.addSubview(backButton)
         backButton.snp.makeConstraints{make in
             make.width.height.equalTo(40)
